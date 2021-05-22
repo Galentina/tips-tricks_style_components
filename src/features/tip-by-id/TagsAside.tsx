@@ -1,37 +1,42 @@
-import React, { useContext, useEffect } from 'react';
-import { NavLink, Link } from 'react-router-dom';
-import tags from '../../mock-data/tags.json';
+// @ts-nocheck
+/* Core */
+import { FC, useContext } from 'react';
+import { Link } from 'react-router-dom';
+import { observer } from 'mobx-react-lite';
+
+/* Components */
+import { Tag } from '../../components';
+
+/* Instruments */
 import { TagContext } from '../../lib';
-import { Tag } from '../../components/Tags/Tag';
+import { getTagIcon } from '../../helpers';
 
-export const TagAside = () => {
-    const [selectedTagId, setSelectedTagId] = useContext(TagContext);
+/* Mock */
+import tags from '../../mock-data/tags.json';
 
-    useEffect(() => {
-        if (!selectedTagId && Array.isArray(tags)) {
-            setSelectedTagId(tags[ 0 ].id);
-        }
-    }, []);
+export const TagsAside: FC = observer(() => {
+    const [, setSelectedTagId] = useContext(TagContext);
 
-    const handleTagClick = (id) => {
-        setSelectedTagId(id);
-    };
+    const tagsJSX =  tags?.map((tag) => {
+        const TagIcon = getTagIcon(tag.name);
 
-
-    const tagsJSX = tags?.map((tag) => <Link key = { tag.id } to = '/topics-by-tag'>
-        <Tag
-            key = { tag.id } { ...tag }
-            handleTagClick = { () => handleTagClick(tag.id) } />
-    </Link>);
+        return (
+            <Link to = '/topic-by-tag' key = { tag.id }>
+                <Tag
+                    handleTagClick = { () => setSelectedTagId(tag.id) }
+                    dataActive = { false }
+                    key = { tag.id }
+                    name = { tag.name }>
+                    <TagIcon />
+                </Tag>
+            </Link>
+        );
+    });
 
     return (
         <aside className = 'tags-aside'>
-            <div className = 'tags'>
-                <h1>Тэги</h1>
-                <div>
-                    { tagsJSX }
-                </div>
-            </div>
+            <h1>Тэги</h1>
+            <div>{ tagsJSX }</div>
         </aside>
     );
-};
+});
