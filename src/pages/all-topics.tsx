@@ -1,5 +1,6 @@
 // @ts-nocheck
 import { Hero, Nav, TipList } from '../components';
+import { fetchify } from '../helpers';
 
 export const AllTopicsPage = () => {
     return (

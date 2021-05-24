@@ -6,10 +6,12 @@ import { Link } from 'react-router-dom';
 /* Instruments */
 import { sortByDate, formatDate, getTagIcon } from '../../helpers';
 
-/* Mock */
-import tips from '../../mock-data/tips.json';
+import { useTips } from '../../hooks';
 
 export const RecentTipsAside: FC = () => {
+    const { data: tips } = useTips();
+
+
     const recentTipsJSX = tips
         ?.sort(sortByDate)
         .slice(0, 5)
