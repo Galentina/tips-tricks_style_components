@@ -10,17 +10,17 @@ import { Tag } from './Tag';
 /* Other */
 import { TagContext } from '../../lib';
 import { useTags } from '../../hooks';
-
+import { fetchify } from '../../helpers';
 
 export const Tags: FC = ({ tipViewMode }) => {
     const [selectedTagId, setSelectedTagId] = useContext(TagContext);
-    const { data: tags } = useTags();
+    const { data: tags, isFetchedAfterMount, isFetched } = useTags();
 
     useEffect(() => {
         if (!selectedTagId && Array.isArray(tags)) {
             setSelectedTagId(tags[ 0 ].id);
         }
-    }, []);
+    }, [isFetchedAfterMount]);
 
     const handleTagClick = (id) => {
         setSelectedTagId(id);
@@ -36,7 +36,7 @@ export const Tags: FC = ({ tipViewMode }) => {
 
     return (
         <div className = 'tags'>
-            { tagsJSX }
+            { fetchify(isFetched, tagsJSX) }
         </div>
     );
 };

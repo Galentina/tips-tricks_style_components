@@ -6,7 +6,9 @@ import {
 
 /* Components */
 import { Settings } from './components';
-import { TipByIdPage, AllTopicsPage, TopicsByTagPage } from './pages';
+import {
+    TipByIdPage, AllTopicsPage, TopicsByTagPage, PublishPage,
+} from './pages';
 
 export const App = () => {
     return (
@@ -24,6 +26,8 @@ export const App = () => {
                     <Route path = '/' element = { <TopicsByTagPage /> } />
                     <Route path = '/:id' element = { <TipByIdPage /> } />
                 </Route>
+
+                <Route path = '/publish' element = { <PublishPage /> } />
 
                 <Route path = '*' element = { <Navigate to = '/all-topics' /> } />
             </Routes>

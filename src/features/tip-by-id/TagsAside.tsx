@@ -7,21 +7,20 @@ import { observer } from 'mobx-react-lite';
 /* Components */
 import { Tag } from '../../components';
 
-/* Instruments */
+/* Other */
 import { TagContext } from '../../lib';
-import { getTagIcon } from '../../helpers';
-
-/* Mock */
-import tags from '../../mock-data/tags.json';
+import { fetchify, getTagIcon } from '../../helpers';
+import { useTags } from '../../hooks';
 
 export const TagsAside: FC = observer(() => {
     const [, setSelectedTagId] = useContext(TagContext);
+    const { data: tags, isFetched } = useTags();
 
     const tagsJSX =  tags?.map((tag) => {
         const TagIcon = getTagIcon(tag.name);
 
         return (
-            <Link to = '/topic-by-tag' key = { tag.id }>
+            <Link to = '/topics-by-tag' key = { tag.id }>
                 <Tag
                     handleTagClick = { () => setSelectedTagId(tag.id) }
                     dataActive = { false }
@@ -36,7 +35,7 @@ export const TagsAside: FC = observer(() => {
     return (
         <aside className = 'tags-aside'>
             <h1>Тэги</h1>
-            <div>{ tagsJSX }</div>
+            <div>{ fetchify(isFetched, tagsJSX) }</div>
         </aside>
     );
 });

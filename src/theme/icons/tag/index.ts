@@ -13,7 +13,7 @@ import { Git } from './Git';
 import { Tools } from './Tools';
 import { MacOS } from './MacOS';
 
-/* Instruments */
+/* Other */
 import { TagEnum } from '../../../types';
 
 export const icons = {

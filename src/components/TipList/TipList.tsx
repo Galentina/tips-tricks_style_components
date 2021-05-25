@@ -7,23 +7,23 @@ import { Tip } from './Tip';
 
 /* Other */
 import { TagContext } from '../../lib';
-
-/* Mock */
-import source from '../../mock-data/tips.json';
+import { useTips } from '../../hooks';
+import { fetchify } from '../../helpers';
 
 export const TipList: FC = ({ tipViewMode }) => {
+    const query = useTips();
     const [selectedTagId] = useContext(TagContext);
-    let tips = source;
+    let tips = query.data;
 
     if (tipViewMode === 'topic-by-tag') {
-        tips = source?.filter((tip) => tip.tag.id === selectedTagId);
+        tips = tips?.filter((tip) => tip.tag.id === selectedTagId);
     }
 
-    const tipsJSX = tips.map((tip) => <Tip key = { tip.id } { ...tip } />);
+    const tipsJSX = tips?.map((tip) => <Tip key = { tip.id } { ...tip } />);
 
     return (
         <section className = 'tip-list'>
-            { tipsJSX }
+            { fetchify(query.isFetched, tipsJSX) }
         </section>
     );
 };
