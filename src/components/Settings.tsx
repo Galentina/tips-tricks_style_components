@@ -3,7 +3,7 @@
 import { FC, useContext } from 'react';
 
 /* Instruments */
-import { Context } from '../lib/settingsContext';
+import { Context } from '../lib';
 
 export const Settings: FC = () => {
     const [isSettingsOpen, setSettingsOpen] = useContext(Context);

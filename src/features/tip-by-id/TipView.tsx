@@ -1,23 +1,24 @@
 import { useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { fetchify, formatDate, getTagIcon } from '../../helpers';
-import tips from '../../mock-data/tips.json';
+import { useTipById } from '../../hooks';
+
 
 export const TipView = () => {
     const params = useParams();
     const navigate = useNavigate();
 
-    const tipToView = tips.find((tip) => tip.id === params.id);
+    const { data: tipToView, isFetchedAfterMount, isFetched } = useTipById(params.id);
 
     useEffect(() => {
-        if (tips !== null && !tipToView) {
-            navigate('..', {
-                replace: true,
-            });
+        if (!tipToView && isFetchedAfterMount) {
+            navigate('..', { replace: true });
         }
-    }, [tips, tipToView]);
+    }, [tipToView, isFetchedAfterMount]);
+
 
     const TagIcon = getTagIcon(tipToView?.tag.name);
+
 
     const goBack = () => {
         navigate('..');
@@ -27,15 +28,15 @@ export const TipView = () => {
         <>
             <article>
                 <header>
-                    <TagIcon /> <h1>{ fetchify(false, tipToView?.title) }</h1>
+                    <TagIcon /> <h1>{ fetchify(isFetched, tipToView?.title) }</h1>
                 </header>
 
                 <main>
                     <time>
                         <TagIcon />
                         <div>
-                            <span>🚀 { fetchify(false, formatDate(tipToView?.created)) }</span>
-                            <span>👨🏼‍🚀 Автор: { fetchify(false, tipToView?.author) }</span>
+                            <span>🚀 { fetchify(isFetched, formatDate(tipToView?.created)) }</span>
+                            <span>👨🏼‍🚀 Автор: { fetchify(isFetched, tipToView?.author) }</span>
                         </div>
                     </time>
                 </main>

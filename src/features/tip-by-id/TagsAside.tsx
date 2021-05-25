@@ -1,32 +1,41 @@
 // @ts-nocheck
 /* Core */
-import { FC, useContext } from 'react';
+import { FC, useContext, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { observer } from 'mobx-react-lite';
 
 /* Components */
+import { useIsFetching } from 'react-query';
 import { Tag } from '../../components';
 
 /* Instruments */
 import { TagContext } from '../../lib';
-import { getTagIcon } from '../../helpers';
+import { fetchify, getTagIcon } from '../../helpers';
 
-/* Mock */
-import tags from '../../mock-data/tags.json';
+/* API */
+import { useTags } from '../../hooks';
 
 export const TagsAside: FC = observer(() => {
-    const [, setSelectedTagId] = useContext(TagContext);
+    const [selectedTagId, setSelectedTagId] = useContext(TagContext);
+    const { data: tags, isFetched } = useTags();
+
+    useEffect(() => {
+        if (!selectedTagId && Array.isArray(tags)) {
+            setSelectedTagId(tags[ 0 ].id);
+        }
+    }, []);
 
     const tagsJSX =  tags?.map((tag) => {
         const TagIcon = getTagIcon(tag.name);
 
+
         return (
-            <Link to = '/topic-by-tag' key = { tag.id }>
+            <Link to = '/topics-by-tag' key = { tag.id }>
                 <Tag
                     handleTagClick = { () => setSelectedTagId(tag.id) }
                     dataActive = { false }
                     key = { tag.id }
-                    name = { tag.name }>
+                    name = { tag.name } >
                     <TagIcon />
                 </Tag>
             </Link>
@@ -36,7 +45,7 @@ export const TagsAside: FC = observer(() => {
     return (
         <aside className = 'tags-aside'>
             <h1>Тэги</h1>
-            <div>{ tagsJSX }</div>
+            <div> { fetchify(isFetched, tagsJSX) } </div>
         </aside>
     );
 });
