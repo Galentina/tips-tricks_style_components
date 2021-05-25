@@ -71,4 +71,32 @@
             background-position: left;
         }
     }
+
+    @media screen and (max-width: 1024px) {
+        bottom: unset;
+        display: flex;
+        flex-flow: row wrap;
+        align-items: center;
+        width: 100%;
+
+        & h1 {
+            width: 100%;
+            margin-bottom: 0;
+        }
+
+        & a {
+            width: calc(100% / 7);
+        }
+    }
+
+    @media screen and (max-width: 768px) {
+        & h1 {
+            font-size: 28px;
+        }
+
+        & a {
+            height: 50px;
+            font-size: 0;
+        }
+    }
 }
