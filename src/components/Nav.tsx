@@ -19,9 +19,7 @@ export const Nav = () => {
     return (
         <nav className = 'nav'>
             <Link to = '/all-topics'>
-                <h1 title = 'Типсы и Триксы'>
-                    T и T
-                </h1>
+                <h1 title = 'Типсы и Триксы'>T и T</h1>
             </Link>
             <NavLink to = '/all-topics'>
                 <icons.Home /> Все темы

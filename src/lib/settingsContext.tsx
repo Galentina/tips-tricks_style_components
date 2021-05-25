@@ -9,4 +9,3 @@ export const SettingsProvider: FC = (props) => {
 
     return <Context.Provider value = { state }>{ props.children }</Context.Provider>;
 };
-

@@ -21,9 +21,5 @@ export const TipList: FC = ({ tipViewMode }) => {
 
     const tipsJSX = tips?.map((tip) => <Tip key = { tip.id } { ...tip } />);
 
-    return (
-        <section className = 'tip-list'>
-            { fetchify(query.isFetched, tipsJSX) }
-        </section>
-    );
+    return <section className = 'tip-list'>{ fetchify(query.isFetched, tipsJSX) }</section>;
 };

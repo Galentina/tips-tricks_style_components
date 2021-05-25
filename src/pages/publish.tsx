@@ -3,12 +3,13 @@ import { FC } from 'react';
 
 /* Components */
 import { Nav } from '../components';
+import { PublishTipForm } from '../components/forms';
 
 export const PublishPage: FC = () => {
     return (
         <section className = 'layout'>
             <Nav />
-            <h1 className = 'hero'>Publish form... In progress.</h1>
+            <PublishTipForm />
         </section>
     );
 };

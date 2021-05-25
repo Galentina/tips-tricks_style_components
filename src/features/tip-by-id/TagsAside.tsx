@@ -16,7 +16,7 @@ export const TagsAside: FC = observer(() => {
     const [, setSelectedTagId] = useContext(TagContext);
     const { data: tags, isFetched } = useTags();
 
-    const tagsJSX =  tags?.map((tag) => {
+    const tagsJSX = tags?.map((tag) => {
         const TagIcon = getTagIcon(tag.name);
 
         return (

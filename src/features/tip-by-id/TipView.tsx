@@ -9,9 +9,7 @@ import { useTipById } from '../../hooks';
 export const TipView = () => {
     const params = useParams();
     const navigate = useNavigate();
-    const { data: tipToView, isFetchedAfterMount, isFetched } = useTipById(
-        params.id,
-    );
+    const { data: tipToView, isFetchedAfterMount, isFetched } = useTipById(params.id);
 
     useEffect(() => {
         if (!tipToView && isFetchedAfterMount) {

@@ -1,8 +1,6 @@
 // @ts-nocheck
 /* Core */
-import {
-    FC, useContext, useEffect,
-} from 'react';
+import { FC, useContext, useEffect } from 'react';
 
 /* Components */
 import { Tag } from './Tag';
@@ -26,17 +24,13 @@ export const Tags: FC = ({ tipViewMode }) => {
         setSelectedTagId(id);
     };
 
-    const tagsJSX = tags?.map((tag) => <Tag
-        key = { tag.id } { ...tag }
-        dataActive = {
-            tipViewMode === 'all-topics'
-            || selectedTagId === tag.id
-        }
-        handleTagClick = { handleTagClick } />);
+    const tagsJSX = tags?.map((tag) => (
+        <Tag
+            key = { tag.id }
+            { ...tag }
+            dataActive = { tipViewMode === 'all-topics' || selectedTagId === tag.id }
+            handleTagClick = { handleTagClick } />
+    ));
 
-    return (
-        <div className = 'tags'>
-            { fetchify(isFetched, tagsJSX) }
-        </div>
-    );
+    return <div className = 'tags'>{ fetchify(isFetched, tagsJSX) }</div>;
 };
