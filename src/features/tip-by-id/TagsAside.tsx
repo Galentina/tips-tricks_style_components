@@ -5,18 +5,19 @@ import { Link } from 'react-router-dom';
 import { observer } from 'mobx-react-lite';
 
 /* Components */
+import { useIsFetching } from 'react-query';
 import { Tag } from '../../components';
 
 /* Instruments */
 import { TagContext } from '../../lib';
-import { getTagIcon } from '../../helpers';
+import { fetchify, getTagIcon } from '../../helpers';
 
 /* API */
 import { useTags } from '../../hooks';
 
 export const TagsAside: FC = observer(() => {
     const [selectedTagId, setSelectedTagId] = useContext(TagContext);
-    const { data: tags } = useTags();
+    const { data: tags, isFetched } = useTags();
 
     useEffect(() => {
         if (!selectedTagId && Array.isArray(tags)) {
@@ -26,6 +27,7 @@ export const TagsAside: FC = observer(() => {
 
     const tagsJSX =  tags?.map((tag) => {
         const TagIcon = getTagIcon(tag.name);
+
 
         return (
             <Link to = '/topics-by-tag' key = { tag.id }>
@@ -43,7 +45,7 @@ export const TagsAside: FC = observer(() => {
     return (
         <aside className = 'tags-aside'>
             <h1>Тэги</h1>
-            <div> { tagsJSX } </div>
+            <div> { fetchify(isFetched, tagsJSX) } </div>
         </aside>
     );
 });

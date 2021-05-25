@@ -10,10 +10,11 @@ import { useTips } from '../../hooks';
 
 /* Other */
 import { TagContext } from '../../lib';
+import { fetchify } from '../../helpers';
 
 export const TipList: FC = ({ tipViewMode }) => {
     const [selectedTagId] = useContext(TagContext);
-    const { data: source } = useTips();
+    const { data: source, isFetched } = useTips();
 
     let tips = source;
 
@@ -25,7 +26,7 @@ export const TipList: FC = ({ tipViewMode }) => {
 
     return (
         <section className = 'tip-list'>
-            { tipsJSX }
+            { fetchify(isFetched, tipsJSX) }
         </section>
     );
 };

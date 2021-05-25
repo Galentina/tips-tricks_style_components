@@ -4,12 +4,14 @@ import { FC } from 'react';
 import { Link } from 'react-router-dom';
 
 /* Instruments */
-import { sortByDate, formatDate, getTagIcon } from '../../helpers';
+import {
+    sortByDate, formatDate, getTagIcon, fetchify,
+} from '../../helpers';
 
 import { useTips } from '../../hooks';
 
 export const RecentTipsAside: FC = () => {
-    const { data: tips } = useTips();
+    const { data: tips, isFetched } = useTips();
 
 
     const recentTipsJSX = tips
@@ -31,7 +33,7 @@ export const RecentTipsAside: FC = () => {
     return (
         <aside className = 'recent-tips'>
             <h1>Свежие типсы</h1>
-            { recentTipsJSX }
+            { fetchify(isFetched, recentTipsJSX) }
         </aside>
     );
 };
