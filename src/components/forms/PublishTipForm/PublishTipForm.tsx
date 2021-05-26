@@ -1,14 +1,16 @@
+// @ts-nocheck
+/* Core */
+import { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { useEffect } from 'react';
-import { getNewTipPlaceholder, schema } from './config';
-import { useCreateTip } from '../../../hooks/useCreateTip';
-import { useTags } from '../../../hooks/useTags';
+
+/* Other */
 import { Input } from '../elements/Input';
+import { getNewTipPlaceholder, schema } from './config';
+import { useCreateTip, useTags } from '../../../hooks';
 
 export const PublishTipForm = () => {
     const { data: tags } = useTags();
-
     const createTip = useCreateTip();
 
     const form = useForm({

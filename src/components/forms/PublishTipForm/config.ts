@@ -1,8 +1,10 @@
 import { lorem, system } from 'faker';
 import * as yup from 'yup';
 
-const tooShortMessage = 'минимальная длина не соблюдена';
-const tooLongMessage = 'максимальная длина не соблюдена';
+// eslint-disable-next-line no-template-curly-in-string
+const tooShortMessage = 'минимальная длина — ${min} символов';
+// eslint-disable-next-line no-template-curly-in-string
+const tooLongMessage = 'максимальная длина — ${max} символов';
 
 export const schema = yup.object().shape({
     title: yup

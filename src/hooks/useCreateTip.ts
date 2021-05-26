@@ -1,15 +1,19 @@
+/* Core */
 import { useMutation, useQueryClient } from 'react-query';
-import { api } from '../api/api';
+
+/* Other */
+import { api } from '../api';
 
 export const useCreateTip = () => {
     const client = useQueryClient();
 
     const mutation = useMutation(
-        (tip: any) => {
+        (tip) => {
             return api.createTip(tip);
         },
         {
             onSettled() {
+                // eslint-disable-next-line @typescript-eslint/no-floating-promises
                 client.invalidateQueries('/tips');
             },
         },
