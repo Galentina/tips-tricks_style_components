@@ -119,4 +119,55 @@
             }
         }
     }
+
+    @media screen and (max-width: 768px) {
+        gap: 10px;
+        padding: 0 10px;
+        padding-top: 10px;
+
+        article {
+            grid-template-rows: auto 1fr 50px;
+
+            header {
+                grid-template-columns: 100px auto;
+                padding: 10px 10px;
+
+                svg {
+                    --size: 100px;
+                }
+
+                h1 {
+                    padding: 0 5px;
+                    font-size: 22px;
+                    line-height: 1;
+                }
+            }
+
+            main {
+                padding: 10px;
+
+                time {
+                    margin-bottom: 15px;
+
+                    span {
+                        font-size: 14px;
+                    }
+
+                    svg {
+                        display: none;
+                    }
+                }
+
+                h2 {
+                    margin-bottom: 15px;
+                    font-size: 22px;
+                    line-height: 1;
+                }
+            }
+
+            footer {
+                padding: 10px;
+            }
+        }
+    }
 }

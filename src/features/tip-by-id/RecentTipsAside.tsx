@@ -3,16 +3,14 @@
 import { FC } from 'react';
 import { Link } from 'react-router-dom';
 
-/* Instruments */
+/* Other */
 import {
     sortByDate, formatDate, getTagIcon, fetchify,
 } from '../../helpers';
-
 import { useTips } from '../../hooks';
 
 export const RecentTipsAside: FC = () => {
     const { data: tips, isFetched } = useTips();
-
 
     const recentTipsJSX = tips
         ?.sort(sortByDate)

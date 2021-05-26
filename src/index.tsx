@@ -2,11 +2,12 @@
 import { render } from 'react-dom';
 import { BrowserRouter as Router } from 'react-router-dom';
 import { QueryClientProvider } from 'react-query';
+import { ReactQueryDevtools } from 'react-query/devtools';
 
 /* Components */
 import { App } from './App';
 
-/* Instruments */
+/* Other */
 import './theme/main.scss';
 import { SettingsProvider, SelectedTagProvider } from './lib';
 import { queryClient } from './lib/react-query';
@@ -20,6 +21,7 @@ render(
                 </Router>
             </SettingsProvider>
         </SelectedTagProvider>
+        <ReactQueryDevtools initialIsOpen = { false } />
     </QueryClientProvider>,
     document.getElementById('root'),
 );

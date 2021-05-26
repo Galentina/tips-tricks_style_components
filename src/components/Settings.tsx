@@ -2,7 +2,7 @@
 /* Core */
 import { FC, useContext } from 'react';
 
-/* Instruments */
+/* Other */
 import { Context } from '../lib';
 
 export const Settings: FC = () => {

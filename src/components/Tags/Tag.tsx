@@ -12,11 +12,9 @@ export const Tag: FC = ({
 
     return (
         <span
-            data-active = { dataActive }
-            onClick = { () => handleTagClick(id) }
+            data-active = { dataActive } onClick = { () => handleTagClick(id) }
             className = 'tag'>
             <TagIcon /> { name }
         </span>
     );
 };
-

@@ -1,4 +1,4 @@
-/* Instruments */
+/* Other */
 import { icons } from '../theme/icons/tag';
 
 export const getTagIcon = (tag = 'JavaScript') => {

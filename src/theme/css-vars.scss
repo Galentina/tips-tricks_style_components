@@ -15,6 +15,10 @@
     --color-5: #3d6cee;
     --color-6: #d1dafe;
     --color-7: #20232a;
-    --color-8: #ff0000;
+    --color-8: #f00;
     --color-9: #008000;
+
+    @media screen and (max-width: 768px) {
+        --border-radius-angle: 8px;
+    }
 }
