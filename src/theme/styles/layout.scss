@@ -9,4 +9,13 @@
     justify-items: center;
     padding-top: 24px;
     padding-bottom: 24px;
+
+    @media screen and (max-width: 1024px) {
+        display: block;
+        padding-top: 155px;
+    }
+
+    @media screen and (max-width: 768px) {
+        padding-top: 110px;
+    }
 }

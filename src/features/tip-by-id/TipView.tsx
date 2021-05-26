@@ -1,13 +1,14 @@
+/* Cores */
 import { useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
+
+/* Other */
 import { fetchify, formatDate, getTagIcon } from '../../helpers';
 import { useTipById } from '../../hooks';
-
 
 export const TipView = () => {
     const params = useParams();
     const navigate = useNavigate();
-
     const { data: tipToView, isFetchedAfterMount, isFetched } = useTipById(params.id);
 
     useEffect(() => {
@@ -16,9 +17,7 @@ export const TipView = () => {
         }
     }, [tipToView, isFetchedAfterMount]);
 
-
     const TagIcon = getTagIcon(tipToView?.tag.name);
-
 
     const goBack = () => {
         navigate('..');
@@ -45,7 +44,7 @@ export const TipView = () => {
                 </footer>
             </article>
 
-            <main>{ fetchify(false, tipToView?.body) }</main>
+            <main>{ fetchify(isFetched, tipToView?.body) }</main>
         </>
     );
 };

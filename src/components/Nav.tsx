@@ -1,7 +1,7 @@
 // @ts-nocheck
 /* Core */
 import { useContext } from 'react';
-import { NavLink } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 
 /* Other */
 import { icons } from '../theme/icons/nav';
@@ -18,19 +18,27 @@ export const Nav = () => {
 
     return (
         <nav className = 'nav'>
-            <h1>Т и Т</h1>
+            <Link to = '/all-topics'>
+                <h1 title = 'Типсы и Триксы'>T и T</h1>
+            </Link>
             <NavLink to = '/all-topics'>
                 <icons.Home /> Все темы
             </NavLink>
             <NavLink to = '/topics-by-tag'>
                 <icons.Tag /> По тэгам
             </NavLink>
+            <NavLink to = '/publish'>
+                <icons.Publish />
+                Опубликовать
+            </NavLink>
             <a className = { isSettingsOpen ? 'active' : '' } onClick = { handleSettingsClick }>
                 <icons.Settings />
                 Настройки
             </a>
-            <a>Опубликовать</a>
-            <a>Поиск</a>
+            <NavLink to = '/login'>
+                <icons.Bolt />
+                Войти
+            </NavLink>
         </nav>
     );
 };
