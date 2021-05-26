@@ -5,7 +5,7 @@ import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 
 /* Other */
-import { Input } from '../elements/Input';
+import { Input } from '../elements';
 import { getNewTipPlaceholder, schema } from './config';
 import { useCreateTip, useTags } from '../../../hooks';
 
