@@ -39,6 +39,10 @@ export const Nav = () => {
                 <icons.Bolt />
                 Войти
             </NavLink>
+            <NavLink to = '/logout'>
+                <icons.Logout />
+                Выйти
+            </NavLink>
         </nav>
     );
 };

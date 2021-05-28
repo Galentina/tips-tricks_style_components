@@ -7,7 +7,9 @@ import {
 /* Components */
 import { Settings } from './components';
 import {
-    TipByIdPage, AllTopicsPage, TopicsByTagPage, PublishPage,
+    TipByIdPage, AllTopicsPage,
+    TopicsByTagPage, PublishPage,
+    LoginPage, SignUpPage,
 } from './pages';
 
 export const App = () => {
@@ -27,6 +29,8 @@ export const App = () => {
                 </Route>
 
                 <Route path = '/publish' element = { <PublishPage /> } />
+                <Route path = '/login' element = { <LoginPage /> } />
+                <Route path = '/signup' element = { <SignUpPage /> } />
 
                 <Route path = '*' element = { <Navigate to = '/all-topics' /> } />
             </Routes>
