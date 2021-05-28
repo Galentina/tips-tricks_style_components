@@ -6,6 +6,7 @@ import { Link, NavLink } from 'react-router-dom';
 /* Other */
 import { icons } from '../theme/icons/nav';
 import { Context } from '../lib';
+import { Profile } from '../theme/icons/nav/Profile';
 
 export const Nav = () => {
     const [isSettingsOpen, setSettingsOpen] = useContext(Context);
@@ -38,6 +39,10 @@ export const Nav = () => {
             <NavLink to = '/login'>
                 <icons.Bolt />
                 Войти
+            </NavLink>
+            <NavLink to = '/profile'>
+                <icons.Profile />
+                Профиль
             </NavLink>
         </nav>
     );
