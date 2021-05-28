@@ -18,6 +18,8 @@ export const signUpFormSchema = yup.object().shape({
         .required('*'),
     password: yup
         .string()
+        .min(8, tooShortMessage)
+        .max(64, tooLongMessage)
         .required('*'),
     confirmPassword: yup
         .string()
