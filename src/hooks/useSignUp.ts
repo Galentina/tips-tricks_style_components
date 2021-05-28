@@ -11,10 +11,14 @@ export const useSignUp = () => {
         (credentials) => {
             return api.signUp(credentials);
         },
+
         {
-            onSettled() {
-                // eslint-disable-next-line @typescript-eslint/no-floating-promises
+            onError(error) {
+                console.log('useSignUp error', error);
+            },
+            onSuccess(credentials) {
                 client.invalidateQueries('/auth/registration');
+                localStorage.setItem('token', credentials.token);
             },
         },
     );
