@@ -8,6 +8,7 @@ import { ReactQueryDevtools } from 'react-query/devtools';
 import { App } from './App';
 
 /* Other */
+import 'react-toastify/dist/ReactToastify.css';
 import './theme/main.scss';
 import { SettingsProvider, SelectedTagProvider } from './lib';
 import { queryClient } from './lib/react-query';

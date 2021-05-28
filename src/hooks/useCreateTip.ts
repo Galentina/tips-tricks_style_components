@@ -14,7 +14,7 @@ export const useCreateTip = () => {
         {
             onSettled() {
                 // eslint-disable-next-line @typescript-eslint/no-floating-promises
-                client.invalidateQueries('/tips');
+                client.invalidateQueries('tips');
             },
         },
     );
