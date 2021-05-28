@@ -1,3 +1,4 @@
+// @ts-nocheck
 /* Core */
 import axios from 'axios';
 
@@ -23,10 +24,19 @@ export const api = {
 
         return tipById;
     },
-    async createTip(tip) {
+    async createTip(tip, token) {
+        const config = {};
+
+        if (typeof token === 'string' && token) {
+            config.headers = {
+                authorization: `Bearer ${token}`,
+            };
+        }
+
         const { data: newTip } = await axios.post(
             `${process.env.REACT_APP_API_URL}/tips`,
             tip,
+            config,
         );
 
         return newTip;

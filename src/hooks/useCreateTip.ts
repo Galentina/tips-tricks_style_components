@@ -1,3 +1,4 @@
+// @ts-nocheck
 /* Core */
 import { useMutation, useQueryClient } from 'react-query';
 
@@ -9,7 +10,7 @@ export const useCreateTip = () => {
 
     const mutation = useMutation(
         (tip) => {
-            return api.createTip(tip);
+            return api.createTip(tip, null);
         },
         {
             onSettled() {
