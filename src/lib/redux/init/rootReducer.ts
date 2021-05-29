@@ -7,4 +7,3 @@ import { authReducer as auth } from '../reducers';
 export const rootReducer = combineReducers({
     auth,
 });
-

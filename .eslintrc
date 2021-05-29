@@ -357,13 +357,7 @@
     ],
     "id-length": 0,
     "implicit-arrow-linebreak": "warn",
-    "indent": [
-      "warn",
-      4,
-      {
-        "SwitchCase": 4
-      }
-    ],
+    "indent": "off",
     "key-spacing": [
       "error",
       {
