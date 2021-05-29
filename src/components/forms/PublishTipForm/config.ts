@@ -23,6 +23,19 @@ export const schema = yup.object().shape({
         .max(2500, tooLongMessage)
         .required('*'),
     tagId: yup.string().required('*'),
+    name:  yup
+        .string()
+        .required('*'),
+    email: yup
+        .string()
+        .required('*'),
+    password: yup
+        .string()
+        .required('*'),
+    confirmPassword: yup
+        .string()
+        .oneOf([yup.ref('password')], 'Пароли должны совпадать')
+        .required('*'),
 });
 
 
