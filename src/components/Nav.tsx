@@ -1,13 +1,16 @@
 // @ts-nocheck
 /* Core */
 import { useContext } from 'react';
+import { useSelector } from 'react-redux';
 import { Link, NavLink } from 'react-router-dom';
 
 /* Other */
 import { icons } from '../theme/icons/nav';
 import { Context } from '../lib';
+import { getToken } from '../lib/redux/selectors';
 
 export const Nav = () => {
+    const token = useSelector(getToken);
     const [isSettingsOpen, setSettingsOpen] = useContext(Context);
 
     const handleSettingsClick = (event) => {
@@ -35,10 +38,14 @@ export const Nav = () => {
                 <icons.Settings />
                 Настройки
             </a>
-            <NavLink to = '/login'>
+            { !token && <NavLink to = '/login'>
                 <icons.Bolt />
                 Войти
-            </NavLink>
+            </NavLink> }
+            { token && <NavLink to = '/logout'>
+                <icons.Logout />
+                Выйти
+            </NavLink> }
         </nav>
     );
 };
