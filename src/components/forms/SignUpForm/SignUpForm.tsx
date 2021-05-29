@@ -1,7 +1,7 @@
 // @ts-nocheck
 /* Core */
 import { useForm } from 'react-hook-form';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { yupResolver } from '@hookform/resolvers/yup';
 
 /* Components */
@@ -13,7 +13,6 @@ import { useSignUp } from '../../../hooks';
 
 export const SignUpForm = () => {
     const auth = useSignUp();
-    const navigate = useNavigate();
 
     const form = useForm({
         mode:     'onTouched',
@@ -22,7 +21,6 @@ export const SignUpForm = () => {
 
     const signUp = form.handleSubmit(async (credentials) => {
         await auth.mutateAsync(credentials);
-        navigate('/all-topics');
         form.reset();
     });
 

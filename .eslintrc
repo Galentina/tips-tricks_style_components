@@ -358,7 +358,7 @@
     "id-length": 0,
     "implicit-arrow-linebreak": "warn",
     "indent": [
-      "error",
+      "warn",
       4,
       {
         "SwitchCase": 4

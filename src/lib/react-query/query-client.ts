@@ -25,8 +25,7 @@ const defaultQueryFn = async (options: QueryOptions) => {
 export const queryClient = new QueryClient({
     defaultOptions: {
         queries: {
-            queryFn:              defaultQueryFn,
-            refetchOnWindowFocus: false,
+            queryFn: defaultQueryFn,
         },
     },
 });

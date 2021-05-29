@@ -6,6 +6,7 @@ const tooShortMessage = 'минимальная длина — ${min} симво
 // eslint-disable-next-line no-template-curly-in-string
 const tooLongMessage = 'максимальная длина — ${max} символов';
 
+
 export const loginSchema = yup.object().shape({
     email: yup
         .string()
