@@ -7,9 +7,10 @@ export const TopicsByTagPage = () => {
         <>
             <section className = 'layout'>
                 <Nav />
-                <Hero tipViewMode = 'topics-by-tag' />
-                <TipList tipViewMode = 'topics-by-tag' />
+                <Hero tipViewMode = 'topic-by-tag' />
+                <TipList tipViewMode = 'topic-by-tag' />
             </section>
         </>
     );
 };
+

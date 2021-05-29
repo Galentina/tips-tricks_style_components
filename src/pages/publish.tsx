@@ -1,4 +1,4 @@
-/* Core */
+//* Core */
 import { FC } from 'react';
 
 /* Components */
@@ -12,3 +12,4 @@ export const PublishPage: FC = () => {
         </Layout>
     );
 };
+
