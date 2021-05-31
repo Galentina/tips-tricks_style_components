@@ -11,20 +11,18 @@ import { App } from './App';
 /* Other */
 import 'react-toastify/dist/ReactToastify.css';
 import './theme/main.scss';
-import { SettingsProvider, SelectedTagProvider } from './lib';
+
 import { queryClient } from './lib/react-query';
 import { store } from './lib/redux/init/store';
 
 render(
     <Provider store = { store }>
         <QueryClientProvider client = { queryClient }>
-            <SelectedTagProvider>
-                <SettingsProvider>
-                    <Router>
-                        <App />
-                    </Router>
-                </SettingsProvider>
-            </SelectedTagProvider>
+
+            <Router>
+                <App />
+            </Router>
+
             <ReactQueryDevtools initialIsOpen = { false } />
         </QueryClientProvider>
     </Provider>,
