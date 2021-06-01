@@ -1,6 +1,6 @@
 // @ts-nocheck
 /* Core */
-import { FC, useContext } from 'react';
+import { FC } from 'react';
 import { Link } from 'react-router-dom';
 import { observer } from 'mobx-react-lite';
 
@@ -8,21 +8,26 @@ import { observer } from 'mobx-react-lite';
 import { Tag } from '../../components';
 
 /* Other */
-import { TagContext } from '../../lib';
 import { fetchify, getTagIcon } from '../../helpers';
 import { useTags } from '../../hooks';
 
+
 export const TagsAside: FC = observer(() => {
-    const [, setSelectedTagId] = useContext(TagContext);
-    const { data: tags, isFetched } = useTags();
+    const {
+        query: { data: tags, isFetched },
+        tagById,
+    } = useTags();
+
+    const setTag = (id) => tagById(id);
 
     const tagsJSX = tags?.map((tag) => {
         const TagIcon = getTagIcon(tag.name);
 
+
         return (
             <Link to = '/topics-by-tag' key = { tag.id }>
                 <Tag
-                    handleTagClick = { () => setSelectedTagId(tag.id) }
+                    handleTagClick = { () => setTag(tag.id) }
                     dataActive = { false }
                     key = { tag.id }
                     name = { tag.name }>

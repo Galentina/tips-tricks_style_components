@@ -3,10 +3,20 @@
 import { useQuery } from 'react-query';
 
 /* Other */
-import { api } from '../api/api';
+import { useDispatch } from 'react-redux';
+import { useEffect } from 'react';
+import { api } from '../api';
+import { setTagsById, setTags } from '../lib/redux/actions';
 
 export const useTags = () => {
     const query = useQuery('tags', api.getTags);
 
-    return query;
+    const dispatch = useDispatch();
+    useEffect(() => {
+        dispatch(setTags(query.data));
+    }, [query.isSuccess]);
+
+    const tagById = (id) => dispatch(setTagsById(id));
+
+    return { query, tagById };
 };
