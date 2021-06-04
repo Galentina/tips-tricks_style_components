@@ -1,14 +1,13 @@
 // @ts-nocheck
-import { Hero, Nav, TipList } from '../components';
+import { Hero, Layout, TipList } from '../components';
 
 export const AllTopicsPage = () => {
     return (
         <>
-            <section className = 'layout'>
-                <Nav />
+            <Layout>
                 <Hero tipViewMode = 'all-topics' />
                 <TipList tipViewMode = 'all-topics' />
-            </section>
+            </Layout>
         </>
     );
 };
