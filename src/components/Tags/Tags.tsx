@@ -1,32 +1,30 @@
-// @ts-nocheck
 /* Core */
-import { FC, useEffect } from 'react';
-import { useSelector } from 'react-redux';
+import { FC, useContext, useEffect } from 'react';
+import { TipViewMode } from '../../types';
 /* Components */
 import { Tag } from './Tag';
 
 /* Other */
-
+import { TagContext } from '../../lib';
 import { useTags } from '../../hooks';
 import { fetchify } from '../../helpers';
-import { getTagId } from '../../lib/redux/selectors';
 
+type Props = {
+    tipViewMode: TipViewMode;
+};
 
-export const Tags: FC = ({ tipViewMode }) => {
-    const selectedTagId = useSelector(getTagId);
-    const {
-        query: { data: tags, isFetchedAfterMount, isFetched },
-        tagById,
-    } = useTags();
+export const Tags: FC<Props> = ({ tipViewMode }) => {
+    const [selectedTagId, setSelectedTagId] = useContext<any>(TagContext);
+    const { data: tags, isFetchedAfterMount, isFetched } = useTags();
 
     useEffect(() => {
         if (!selectedTagId && Array.isArray(tags)) {
-            tagById(tags[ 0 ].id);
+            setSelectedTagId(tags[ 0 ].id);
         }
     }, [isFetchedAfterMount]);
 
     const handleTagClick = (id) => {
-        tagById(id);
+        setSelectedTagId(id);
     };
 
     const tagsJSX = tags?.map((tag) => (

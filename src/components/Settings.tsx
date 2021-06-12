@@ -1,16 +1,12 @@
 // @ts-nocheck
 /* Core */
-import { FC } from 'react';
+import { FC, useContext } from 'react';
 
 /* Other */
-import { useDispatch, useSelector } from 'react-redux';
-import { getPubId } from '../lib/redux/selectors';
-import { setPub } from '../lib/redux/actions';
+import { Context } from '../lib';
 
 export const Settings: FC = () => {
-    const isSettingsOpen = useSelector(getPubId);
-    const dispatch = useDispatch();
-
+    const [isSettingsOpen, setSettingsOpen] = useContext(Context);
 
     return (
         <section className = { `settings ${isSettingsOpen ? 'open' : 'closed'}` }>
@@ -19,7 +15,7 @@ export const Settings: FC = () => {
             </header>
 
             <footer>
-                <button onClick = { () => dispatch(setPub(false)) }>Закрыть</button>
+                <button onClick = { () => setSettingsOpen(false) }>Закрыть</button>
             </footer>
         </section>
     );

@@ -1,26 +1,23 @@
 // @ts-nocheck
 /* Core */
 import { useContext } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { Link, NavLink } from 'react-router-dom';
 
 /* Other */
 import { icons } from '../theme/icons/nav';
 import { Context } from '../lib';
-import { getPubId, getToken } from '../lib/redux/selectors';
-import { setPub } from '../lib/redux/actions';
+import { getToken } from '../lib/redux/selectors';
 
 export const Nav = () => {
     const token = useSelector(getToken);
-    const isSettingsOpen = useSelector(getPubId);
-
-    const dispatch = useDispatch();
+    const [isSettingsOpen, setSettingsOpen] = useContext(Context);
 
     const handleSettingsClick = (event) => {
         event.preventDefault();
-        dispatch(setPub(true));
+
+        setSettingsOpen(true);
     };
-    console.log(isSettingsOpen);
 
     return (
         <nav className = 'nav'>
@@ -56,4 +53,3 @@ export const Nav = () => {
         </nav>
     );
 };
-

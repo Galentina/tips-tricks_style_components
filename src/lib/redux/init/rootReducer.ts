@@ -2,11 +2,8 @@
 import { combineReducers } from 'redux';
 
 // Reducers
-import { authReducer as auth, tagReducer as tags, pubReducer as pub } from '../reducers';
-
+import { authReducer as auth } from '../reducers';
 
 export const rootReducer = combineReducers({
     auth,
-    tags,
-    pub,
 });
