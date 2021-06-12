@@ -41,7 +41,10 @@ export const LoginForm = () => {
 
                     <input type = 'submit' value = 'Войти' />
                 </fieldset>
-                <p>Если у вас до сих пор нет учётной записи, вы можете <Link to = '/signup'>зарегистрироваться</Link>.</p>
+                <p>
+          Если у вас до сих пор нет учётной записи, вы можете{ ' ' }
+                    <Link to = '/signup'>зарегистрироваться</Link>.
+                </p>
             </form>
         </section>
     );

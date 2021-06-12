@@ -51,7 +51,9 @@ export const SignUpForm = () => {
 
                     <input type = 'submit' value = 'Зарегистрироваться' />
                 </fieldset>
-                <p>Перейти к <Link to = '/login'>логину</Link>.</p>
+                <p>
+          Перейти к <Link to = '/login'>логину</Link>.
+                </p>
             </form>
         </section>
     );

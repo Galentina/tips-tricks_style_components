@@ -1,15 +1,12 @@
-// @ts-nocheck
-import { Hero, Nav, TipList } from '../components';
-import { fetchify } from '../helpers';
+import { Hero, Layout, TipList } from '../components';
 
 export const AllTopicsPage = () => {
     return (
         <>
-            <section className = 'layout'>
-                <Nav />
-                <Hero tipViewMode = 'all-topics' />
+            <Layout>
+                <Hero tipViewMode = 'topic-by-tag' />
                 <TipList tipViewMode = 'all-topics' />
-            </section>
+            </Layout>
         </>
     );
 };

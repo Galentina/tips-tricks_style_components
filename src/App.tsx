@@ -9,9 +9,12 @@ import { ToastContainer, toast, Slide } from 'react-toastify';
 /* Components */
 import { Settings } from './components';
 import {
-    TipByIdPage, AllTopicsPage,
-    TopicsByTagPage, PublishPage,
-    LoginPage, SignUpPage,
+    TipByIdPage,
+    AllTopicsPage,
+    TopicsByTagPage,
+    PublishPage,
+    LoginPage,
+    SignUpPage,
 } from './pages';
 import { getErrorMessage } from './lib/redux/selectors';
 import { authActions } from './lib/redux/actions';
@@ -33,9 +36,9 @@ export const App = () => {
             });
             notify();
             /**
-             * необходимо очистить состояние ошибки что бы при повторном возникновении
-             * такой же ошибки появилось вспылвающее сообщение
-             * */
+       * необходимо очистить состояние ошибки что бы при повторном возникновении
+       * такой же ошибки появилось вспылвающее сообщение
+       * */
             dispatch(authActions.resetError());
         }
     }, [errorMessage]);

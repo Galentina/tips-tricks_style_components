@@ -2,15 +2,13 @@
 import { FC } from 'react';
 
 /* Components */
-import { Nav } from '../components';
+import { Layout } from '../components';
 import { RecentTipsAside, TipView, TagsAside } from '../features/tip-by-id';
 
 export const TipByIdPage: FC = () => {
     return (
         <>
-            <section className = 'layout'>
-                <Nav />
-
+            <Layout>
                 <section className = 'tip-view-layout'>
                     <TipView />
 
@@ -19,7 +17,7 @@ export const TipByIdPage: FC = () => {
                         <TagsAside />
                     </section>
                 </section>
-            </section>
+            </Layout>
         </>
     );
 };

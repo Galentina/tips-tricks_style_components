@@ -1,7 +1,6 @@
-// @ts-nocheck
 /* Core */
 import { FC, useContext, useEffect } from 'react';
-
+import { TipViewMode } from '../../types';
 /* Components */
 import { Tag } from './Tag';
 
@@ -10,8 +9,12 @@ import { TagContext } from '../../lib';
 import { useTags } from '../../hooks';
 import { fetchify } from '../../helpers';
 
-export const Tags: FC = ({ tipViewMode }) => {
-    const [selectedTagId, setSelectedTagId] = useContext(TagContext);
+type Props = {
+    tipViewMode: TipViewMode;
+};
+
+export const Tags: FC<Props> = ({ tipViewMode }) => {
+    const [selectedTagId, setSelectedTagId] = useContext<any>(TagContext);
     const { data: tags, isFetchedAfterMount, isFetched } = useTags();
 
     useEffect(() => {

@@ -1,15 +1,14 @@
 // @ts-nocheck
 /* Components */
-import { Hero, Nav, TipList } from '../components';
+import { Hero, Layout, TipList } from '../components';
 
 export const TopicsByTagPage = () => {
     return (
         <>
-            <section className = 'layout'>
-                <Nav />
+            <Layout>
                 <Hero tipViewMode = 'topic-by-tag' />
                 <TipList tipViewMode = 'topic-by-tag' />
-            </section>
+            </Layout>
         </>
     );
 };
