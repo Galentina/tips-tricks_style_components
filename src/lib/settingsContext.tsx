@@ -7,9 +7,5 @@ export const Context = createContext([false, () => null]);
 export const SettingsProvider: FC = (props) => {
     const state = useState(false);
 
-    return (
-        <Context.Provider value = { state }>
-            { props.children }
-        </Context.Provider>
-    );
+    return <Context.Provider value = { state }>{ props.children }</Context.Provider>;
 };

@@ -1,11 +1,10 @@
-// @ts-nocheck
 import { Hero, Layout, TipList } from '../components';
 
 export const AllTopicsPage = () => {
     return (
         <>
             <Layout>
-                <Hero tipViewMode = 'all-topics' />
+                <Hero tipViewMode = 'topic-by-tag' />
                 <TipList tipViewMode = 'all-topics' />
             </Layout>
         </>

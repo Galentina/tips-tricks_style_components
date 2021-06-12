@@ -32,20 +32,24 @@ export const Nav = () => {
             </NavLink>
             <NavLink to = '/publish'>
                 <icons.Publish />
-                Опубликовать
+        Опубликовать
             </NavLink>
             <a className = { isSettingsOpen ? 'active' : '' } onClick = { handleSettingsClick }>
                 <icons.Settings />
-                Настройки
+        Настройки
             </a>
-            { !token && <NavLink to = '/login'>
-                <icons.Bolt />
-                Войти
-            </NavLink> }
-            { token && <NavLink to = '/logout'>
-                <icons.Logout />
-                Выйти
-            </NavLink> }
+            { !token && (
+                <NavLink to = '/login'>
+                    <icons.Bolt />
+          Войти
+                </NavLink>
+            ) }
+            { token && (
+                <NavLink to = '/logout'>
+                    <icons.Logout />
+          Выйти
+                </NavLink>
+            ) }
         </nav>
     );
 };

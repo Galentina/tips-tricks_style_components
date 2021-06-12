@@ -7,9 +7,5 @@ export const TagContext = createContext([null, () => null]);
 export const SelectedTagProvider: FC = (props) => {
     const state = useState<string | null>(null);
 
-    return (
-        <TagContext.Provider value = { state }>
-            { props.children }
-        </TagContext.Provider>
-    );
+    return <TagContext.Provider value = { state }>{ props.children }</TagContext.Provider>;
 };

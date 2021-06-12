@@ -1,7 +1,8 @@
 /* Nav */
+import { FC } from 'react';
 import { Nav } from './Nav';
 
-export const Layout = ({ children }) => {
+export const Layout: FC = ({ children }) => {
     return (
         <section className = 'layout'>
             <Nav />

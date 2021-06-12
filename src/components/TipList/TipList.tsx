@@ -1,6 +1,6 @@
-// @ts-nocheck
 /* Core */
 import { FC, useContext } from 'react';
+import { TipViewMode } from '../../types';
 
 /* Components */
 import { Tip } from './Tip';
@@ -10,9 +10,13 @@ import { TagContext } from '../../lib';
 import { useTips } from '../../hooks';
 import { fetchify } from '../../helpers';
 
-export const TipList: FC = ({ tipViewMode }) => {
+type Props = {
+    tipViewMode: TipViewMode;
+};
+
+export const TipList: FC<Props> = ({ tipViewMode }) => {
     const query = useTips();
-    const [selectedTagId] = useContext(TagContext);
+    const [selectedTagId] = useContext<any>(TagContext);
     let tips = query.data;
 
     if (tipViewMode === 'topic-by-tag') {

@@ -1,31 +1,32 @@
-// @ts-nocheck
-/* Core */
 import axios from 'axios';
+import { ITipModel } from '../types/TipModel';
+import { ITagModel } from '../types/TagModel';
+/* Core */
 
 export const api = {
     async getTags() {
-        const { data: tags } = await axios.get(
+        const { data: tags } = await axios.get<ITagModel[]>(
             `${process.env.REACT_APP_API_URL}/tags`,
         );
 
         return tags;
     },
     async getTips() {
-        const { data: tips } = await axios.get(
+        const { data: tips } = await axios.get<ITipModel[]>(
             `${process.env.REACT_APP_API_URL}/tips`,
         );
 
         return tips;
     },
     async getTipById(id: string) {
-        const { data: tipById } = await axios.get(
+        const { data: tipById } = await axios.get<ITipModel>(
             `${process.env.REACT_APP_API_URL}/tips/${id}`,
         );
 
         return tipById;
     },
     async createTip(tip, token) {
-        const config = {};
+        const config = {} as any;
 
         if (typeof token === 'string' && token) {
             config.headers = {

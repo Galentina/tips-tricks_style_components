@@ -1,8 +1,13 @@
-// @ts-nocheck
 /* Components */
+import { FC } from 'react';
+import { TipViewMode } from '../types';
 import { Tags } from './Tags';
 
-export const Hero = ({ tipViewMode }) => {
+type Props = {
+    tipViewMode: TipViewMode;
+};
+
+export const Hero: FC<Props> = ({ tipViewMode }) => {
     const subTitle = tipViewMode === 'all-topics' ? 'Все темы' : 'По тегу';
 
     return (

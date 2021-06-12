@@ -18,7 +18,6 @@ export const PublishTipForm = () => {
         resolver: yupResolver(schema),
     });
 
-
     const publish = form.handleSubmit(async (newTip) => {
         await createTip.mutateAsync(newTip);
         form.reset();
