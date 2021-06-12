@@ -1,25 +1,25 @@
+// @ts-nocheck
 /* Core */
-import { FC, useContext } from 'react';
-import { TipViewMode } from '../../types';
+import { FC } from 'react';
 
 /* Components */
+import { useSelector } from 'react-redux';
 import { Tip } from './Tip';
 
 /* Other */
-import { TagContext } from '../../lib';
 import { useTips } from '../../hooks';
 import { fetchify } from '../../helpers';
+import { getTagId } from '../../lib/redux/selectors';
 
-type Props = {
-    tipViewMode: TipViewMode;
-};
-
-export const TipList: FC<Props> = ({ tipViewMode }) => {
+export const TipList: FC = ({ tipViewMode }) => {
     const query = useTips();
-    const [selectedTagId] = useContext<any>(TagContext);
+
     let tips = query.data;
 
-    if (tipViewMode === 'topic-by-tag') {
+    const selectedTagId = useSelector(getTagId);
+
+
+    if (tipViewMode === 'topic-by-tag' && selectedTagId) {
         tips = tips?.filter((tip) => tip.tag.id === selectedTagId);
     }
 
