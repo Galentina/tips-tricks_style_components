@@ -1,22 +1,23 @@
-// @ts-nocheck
 /* Core */
 import { useEffect } from 'react';
 import { useMutation } from 'react-query';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+import { AxiosError } from 'axios';
 
 /* Other */
 import { api } from '../api';
 import { authActions } from '../lib/redux/actions';
+import { ILoginFormShape } from '../components/forms/LoginForm/config';
 
 export const useLogin = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
-    const mutation = useMutation((credentials) => {
+    const mutation = useMutation((credentials: ILoginFormShape) => {
         return api.login(credentials);
     },
     {
-        onError: (error) => {
+        onError: (error: AxiosError) => {
             const { response } = error;
 
             if (response?.status === 401) {

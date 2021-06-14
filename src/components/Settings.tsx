@@ -1,4 +1,3 @@
-// @ts-nocheck
 /* Core */
 import { FC, useContext } from 'react';
 

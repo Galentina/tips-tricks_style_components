@@ -1,6 +1,5 @@
-// @ts-nocheck
 /* Core */
-import { useContext } from 'react';
+import { SyntheticEvent, useContext } from 'react';
 import { useSelector } from 'react-redux';
 import { Link, NavLink } from 'react-router-dom';
 
@@ -13,7 +12,7 @@ export const Nav = () => {
     const token = useSelector(getToken);
     const [isSettingsOpen, setSettingsOpen] = useContext(Context);
 
-    const handleSettingsClick = (event) => {
+    const handleSettingsClick = (event: SyntheticEvent<HTMLAnchorElement>) => {
         event.preventDefault();
 
         setSettingsOpen(true);

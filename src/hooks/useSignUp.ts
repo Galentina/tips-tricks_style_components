@@ -7,11 +7,12 @@ import { useMutation } from 'react-query';
 /* Other */
 import { authActions } from '../lib/redux/actions';
 import { api } from '../api';
+import { ISignUpFormShape } from '../components/forms/SignUpForm/config';
 
 export const useSignUp = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
-    const mutation = useMutation((credentials) => {
+    const mutation = useMutation((credentials: ISignUpFormShape) => {
         return api.signUp(credentials);
     });
 

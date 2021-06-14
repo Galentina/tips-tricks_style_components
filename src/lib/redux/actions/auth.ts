@@ -2,13 +2,13 @@
 import { types } from '../types';
 
 export const authActions = Object.freeze({
-    setToken: (token) => {
+    setToken: (token: string) => {
         return {
             type:    types.SET_TOKEN,
             payload: token,
         };
     },
-    setError: (message) => {
+    setError: (message: string) => {
         return {
             type:    types.SET_ERROR,
             payload: message,

@@ -1,4 +1,6 @@
-export const fetchify = (isFetched, content) => {
+import { ReactElement } from 'react';
+
+export const fetchify = (isFetched: boolean, content: Content) => {
     if (!isFetched && !content) {
         return 'Загрузка...';
     }
@@ -9,3 +11,5 @@ export const fetchify = (isFetched, content) => {
 
     return null;
 };
+
+type Content = ReactElement[] | string | null | undefined;

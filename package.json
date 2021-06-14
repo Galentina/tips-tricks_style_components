@@ -9,9 +9,10 @@
         "eject": "react-scripts eject",
         "start": "npm run build && serve -s build",
         "format": "prettier-eslint --list-different $PWD/'src/**/*.tsx'; prettier-eslint --write $PWD/'src/**/*.tsx'",
-        "type-check": "tsc --noEmit -p tsconfig.build.json",
+        "type-check": "tsc --noEmit -p tsconfig.json",
         "lint": "eslint ./src/** --ext .{ts,tsx} -c .eslintrc --no-error-on-unmatched-pattern",
-        "lint:fix": "eslint ./src/** --ext .{ts,tsx} -c .eslintrc --no-error-on-unmatched-pattern --fix"
+        "lint:fix": "eslint ./src/** --ext .{ts,tsx} -c .eslintrc --no-error-on-unmatched-pattern --fix",
+        "validate": "npm run type-check && npm run lint"
     },
     "engines": {
         "node": "14.x"
@@ -49,6 +50,7 @@
         "@types/node": "15.0.2",
         "@types/react": "17.0.5",
         "@types/react-dom": "17.0.3",
+        "@types/redux-logger": "^3.0.8",
         "@types/uuid": "8.3.0",
         "@typescript-eslint/eslint-plugin": "4.24.0",
         "@typescript-eslint/parser": "4.24.0",

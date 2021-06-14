@@ -1,12 +1,12 @@
-// @ts-nocheck
 /* Core */
 import { FC } from 'react';
 import { Link } from 'react-router-dom';
 
 /* Other */
 import { getTagIcon, formatDate } from '../../helpers';
+import { ITipModel } from '../../types';
 
-export const Tip: FC = (props) => {
+export const Tip: FC<IPropTypes> = (props) => {
     const {
         id, tag, title, preview, author, created,
     } = props;
@@ -34,3 +34,7 @@ export const Tip: FC = (props) => {
         </article>
     );
 };
+
+interface IPropTypes extends ITipModel {
+
+}

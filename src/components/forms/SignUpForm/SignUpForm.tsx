@@ -1,4 +1,3 @@
-// @ts-nocheck
 /* Core */
 import { useForm } from 'react-hook-form';
 import { Link } from 'react-router-dom';
@@ -8,7 +7,7 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { Input } from '../elements';
 
 /* Other */
-import { signUpFormSchema } from './config';
+import { ISignUpFormShape, signUpFormSchema } from './config';
 import { useSignUp } from '../../../hooks';
 
 export const SignUpForm = () => {
@@ -19,7 +18,7 @@ export const SignUpForm = () => {
         resolver: yupResolver(signUpFormSchema),
     });
 
-    const signUp = form.handleSubmit(async (credentials) => {
+    const signUp = form.handleSubmit(async (credentials: ISignUpFormShape) => {
         await auth.mutateAsync(credentials);
         form.reset();
     });

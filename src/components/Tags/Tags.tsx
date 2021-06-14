@@ -14,7 +14,7 @@ type Props = {
 };
 
 export const Tags: FC<Props> = ({ tipViewMode }) => {
-    const [selectedTagId, setSelectedTagId] = useContext<any>(TagContext);
+    const [selectedTagId, setSelectedTagId] = useContext(TagContext);
     const { data: tags, isFetchedAfterMount, isFetched } = useTags();
 
     useEffect(() => {
@@ -23,7 +23,7 @@ export const Tags: FC<Props> = ({ tipViewMode }) => {
         }
     }, [isFetchedAfterMount]);
 
-    const handleTagClick = (id) => {
+    const handleTagClick = (id: string) => {
         setSelectedTagId(id);
     };
 

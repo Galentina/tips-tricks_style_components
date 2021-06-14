@@ -1,6 +1,5 @@
 /* Core */
 import { FC, useContext } from 'react';
-import { TipViewMode } from '../../types';
 
 /* Components */
 import { Tip } from './Tip';
@@ -9,14 +8,11 @@ import { Tip } from './Tip';
 import { TagContext } from '../../lib';
 import { useTips } from '../../hooks';
 import { fetchify } from '../../helpers';
+import { TipViewMode } from '../../types';
 
-type Props = {
-    tipViewMode: TipViewMode;
-};
-
-export const TipList: FC<Props> = ({ tipViewMode }) => {
+export const TipList: FC<IPropTypes> = ({ tipViewMode }) => {
     const query = useTips();
-    const [selectedTagId] = useContext<any>(TagContext);
+    const [selectedTagId] = useContext(TagContext);
     let tips = query.data;
 
     if (tipViewMode === 'topic-by-tag') {
@@ -27,3 +23,7 @@ export const TipList: FC<Props> = ({ tipViewMode }) => {
 
     return <section className = 'tip-list'>{ fetchify(query.isFetched, tipsJSX) }</section>;
 };
+
+interface IPropTypes {
+    tipViewMode: TipViewMode;
+}

@@ -1,3 +1,5 @@
+import { FC } from 'react';
+
 import { JS } from './JS';
 import { TS } from './TS';
 import { ReactIcon } from './ReactIcon';
@@ -16,7 +18,7 @@ import { MacOS } from './MacOS';
 /* Other */
 import { TagEnum } from '../../../types';
 
-export const icons = {
+export const icons: { [key: string]: FC } = {
     [ TagEnum.JAVASCRIPT ]: JS,
     [ TagEnum.TYPESCRIPT ]: TS,
     [ TagEnum.REACT ]:      ReactIcon,

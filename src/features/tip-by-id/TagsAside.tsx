@@ -1,4 +1,3 @@
-// @ts-nocheck
 /* Core */
 import { FC, useContext } from 'react';
 import { Link } from 'react-router-dom';
@@ -24,6 +23,7 @@ export const TagsAside: FC = observer(() => {
                 <Tag
                     handleTagClick = { () => setSelectedTagId(tag.id) }
                     dataActive = { false }
+                    id = { tag.id }
                     key = { tag.id }
                     name = { tag.name }>
                     <TagIcon />

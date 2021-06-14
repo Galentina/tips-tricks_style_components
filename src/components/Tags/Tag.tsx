@@ -1,11 +1,11 @@
-// @ts-nocheck
 /* Core */
-import { FC } from 'react';
+import { FC, ReactElement } from 'react';
 
 /* Other */
 import { getTagIcon } from '../../helpers';
+import { ITagModel } from '../../types';
 
-export const Tag: FC<any> = ({
+export const Tag: FC<IPropTypes> = ({
     id, name, dataActive, handleTagClick,
 }) => {
     const TagIcon = getTagIcon(name);
@@ -18,3 +18,9 @@ export const Tag: FC<any> = ({
         </span>
     );
 };
+
+interface IPropTypes extends ITagModel {
+    dataActive: boolean;
+    handleTagClick: (value: string) => void;
+    children?: ReactElement;
+}

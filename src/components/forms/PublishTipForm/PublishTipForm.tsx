@@ -1,4 +1,3 @@
-// @ts-nocheck
 /* Core */
 import { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
@@ -8,6 +7,7 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { Input } from '../elements/Input';
 import { getNewTipPlaceholder, schema } from './config';
 import { useCreateTip, useTags } from '../../../hooks';
+import { ITipModel } from '../../../types';
 
 export const PublishTipForm = () => {
     const { data: tags } = useTags();
@@ -18,7 +18,7 @@ export const PublishTipForm = () => {
         resolver: yupResolver(schema),
     });
 
-    const publish = form.handleSubmit(async (newTip) => {
+    const publish = form.handleSubmit(async (newTip: ITipModel) => {
         await createTip.mutateAsync(newTip);
         form.reset();
     });
