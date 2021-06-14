@@ -1,11 +1,17 @@
-// @ts-nocheck
 /* Core */
 import { FC } from 'react';
 
 /* Other */
 import { getTagIcon } from '../../helpers';
 
-export const Tag: FC<any> = ({
+interface ITagProps {
+    id: string,
+    name: string,
+    dataActive: boolean,
+    handleTagClick: (id: string) => any,
+}
+
+export const Tag: FC<ITagProps> = ({
     id, name, dataActive, handleTagClick,
 }) => {
     const TagIcon = getTagIcon(name);

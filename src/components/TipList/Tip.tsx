@@ -1,4 +1,3 @@
-// @ts-nocheck
 /* Core */
 import { FC } from 'react';
 import { Link } from 'react-router-dom';
@@ -6,10 +5,22 @@ import { Link } from 'react-router-dom';
 /* Other */
 import { getTagIcon, formatDate } from '../../helpers';
 
-export const Tip: FC = (props) => {
+interface ITipProps {
+    id: string,
+    tag: {
+        id: string,
+        name: string,
+    }
+    title: string,
+    preview: string,
+    author: string,
+    created: string,
+}
+export const Tip: FC<ITipProps> = (props) => {
     const {
         id, tag, title, preview, author, created,
     } = props;
+
     const TagIcon = getTagIcon(tag.name);
 
     return (

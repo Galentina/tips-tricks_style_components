@@ -6,7 +6,14 @@ const tooShortMessage = 'минимальная длина — ${min} симво
 // eslint-disable-next-line no-template-curly-in-string
 const tooLongMessage = 'максимальная длина — ${max} символов';
 
-export const schema = yup.object().shape({
+interface IFormShape {
+    title: string,
+    preview: string,
+    body: string,
+    tagId: string,
+}
+
+export const schema: yup.SchemaOf<IFormShape> = yup.object().shape({
     title: yup
         .string()
         .min(5, tooShortMessage)
