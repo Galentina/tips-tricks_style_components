@@ -25,6 +25,7 @@ export const Tags: FC<Props> = ({ tipViewMode }) => {
 
     const handleTagClick = (id) => {
         setSelectedTagId(id);
+        console.log('tags', id);
     };
 
     const tagsJSX = tags?.map((tag) => (

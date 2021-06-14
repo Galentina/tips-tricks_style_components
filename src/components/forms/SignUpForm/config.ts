@@ -6,7 +6,14 @@ const tooShortMessage = 'минимальная длина — ${min} симво
 // eslint-disable-next-line no-template-curly-in-string
 const tooLongMessage = 'максимальная длина — ${max} символов';
 
-export const signUpFormSchema = yup.object().shape({
+interface IFormSignUp {
+    name: string,
+    email: string,
+    password: string,
+    confirmPassword: string,
+}
+
+export const signUpFormSchema: yup.SchemaOf<IFormSignUp> = yup.object().shape({
     name: yup
         .string()
         .min(2, tooShortMessage)
