@@ -1,4 +1,4 @@
-// Other
+/* Other */
 import { types } from '../types';
 
 export const authActions = Object.freeze({

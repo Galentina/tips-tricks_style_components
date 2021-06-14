@@ -1,4 +1,4 @@
-// Core
+/* Core */
 import { FC } from 'react';
 
 export const Bolt: FC = () => {
