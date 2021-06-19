@@ -16,17 +16,17 @@ type Props = {
 
 export const Tags: FC<Props> = observer(({ tipViewMode }) => {
     const { tagStore } = useStore();
-    const { selectedTagId, setSelectedTagId } = tagStore;
+    const { selectedTagId } = tagStore;
     const { data: tags, isFetchedAfterMount, isFetched } = useTags();
 
     useEffect(() => {
         if (!selectedTagId && Array.isArray(tags)) {
-            setSelectedTagId(tags[ 0 ].id);
+            tagStore.setSelectedTagId(tags[ 0 ].id);
         }
     }, [isFetchedAfterMount]);
 
     const handleTagClick = (id: string) => {
-        setSelectedTagId(id);
+        tagStore.setSelectedTagId(id);
     };
 
     const tagsJSX = tags?.map((tag) => (

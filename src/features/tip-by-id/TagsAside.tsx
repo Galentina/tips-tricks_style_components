@@ -13,7 +13,6 @@ import { useStore } from '../../hooks/useStore';
 
 export const TagsAside: FC = observer(() => {
     const { tagStore } = useStore();
-    const { setSelectedTagId } = tagStore;
     const { data: tags, isFetched } = useTags();
 
     const tagsJSX = tags?.map((tag) => {
@@ -22,7 +21,7 @@ export const TagsAside: FC = observer(() => {
         return (
             <Link to = '/topics-by-tag' key = { tag.id }>
                 <Tag
-                    handleTagClick = { () => setSelectedTagId(tag.id) }
+                    handleTagClick = { () => tagStore.setSelectedTagId(tag.id) }
                     dataActive = { false }
                     id = { tag.id }
                     key = { tag.id }

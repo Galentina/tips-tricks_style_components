@@ -11,5 +11,3 @@ export class RootStore {
         this.tagStore = new TagStore();
     }
 }
-
-export const rootStore = new RootStore();

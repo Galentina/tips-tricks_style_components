@@ -1,10 +1,11 @@
 import { createContext, ReactElement, FC } from 'react';
-import { rootStore, RootStore } from '../mobx';
+import { RootStore } from '../mobx';
 
+const rootStore = new RootStore();
 export const Context = createContext<RootStore>(rootStore);
 
-export const StoreProvider: FC<IStoreProviderPropTypes> = ({ children }) => {
-    return <Context.Provider value = { rootStore }>{ children }</Context.Provider>;
+export const StoreProvider: FC<IStoreProviderPropTypes> = (props) => {
+    return <Context.Provider value = { rootStore }>{ props.children }</Context.Provider>;
 };
 
 interface IStoreProviderPropTypes {

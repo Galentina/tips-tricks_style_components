@@ -4,6 +4,7 @@ import { BrowserRouter as Router } from 'react-router-dom';
 import { QueryClientProvider } from 'react-query';
 import { Provider } from 'react-redux';
 import { ReactQueryDevtools } from 'react-query/devtools';
+import { configure } from 'mobx';
 
 /* Components */
 import { App } from './App';
@@ -18,18 +19,26 @@ import 'react-toastify/dist/ReactToastify.css';
 import './theme/main.scss';
 import { StoreProvider } from './lib/storeContext';
 
+
+configure({
+    enforceActions:             'always',
+    computedRequiresReaction:   true,
+    observableRequiresReaction: true,
+    reactionRequiresObservable: true,
+});
+
 render(
-    <StoreProvider>
-        <Provider store = { store }>
-            <QueryClientProvider client = { queryClient }>
+    <Provider store = { store }>
+        <QueryClientProvider client = { queryClient }>
+            <StoreProvider>
                 <SelectedTagProvider>
                     <Router>
                         <App />
                     </Router>
                 </SelectedTagProvider>
                 <ReactQueryDevtools initialIsOpen = { false } />
-            </QueryClientProvider>
-        </Provider>
-    </StoreProvider>,
+            </StoreProvider>,
+        </QueryClientProvider>
+    </Provider>,
     document.getElementById('root'),
 );
