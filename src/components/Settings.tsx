@@ -15,9 +15,8 @@ export const Settings: FC = () => {
             </header>
 
             <footer>
-                <button
-                    onClick = { () => dispatch(settingsActions.toggleSettingsIsOpen(false)) }>
-                    Закрыть
+                <button onClick = { () => dispatch(settingsActions.toggleSettingsIsOpen(false)) }>
+          Закрыть
                 </button>
             </footer>
         </section>

@@ -35,6 +35,4 @@ export const Tip: FC<IPropTypes> = (props) => {
     );
 };
 
-interface IPropTypes extends ITipModel {
-
-}
+interface IPropTypes extends ITipModel {}

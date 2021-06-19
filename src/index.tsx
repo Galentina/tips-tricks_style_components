@@ -16,17 +16,20 @@ import { store } from './lib/redux/init/store';
 /* Styles */
 import 'react-toastify/dist/ReactToastify.css';
 import './theme/main.scss';
+import { StoreProvider } from './lib/storeContext';
 
 render(
-    <Provider store = { store }>
-        <QueryClientProvider client = { queryClient }>
-            <SelectedTagProvider>
-                <Router>
-                    <App />
-                </Router>
-            </SelectedTagProvider>
-            <ReactQueryDevtools initialIsOpen = { false } />
-        </QueryClientProvider>
-    </Provider>,
+    <StoreProvider>
+        <Provider store = { store }>
+            <QueryClientProvider client = { queryClient }>
+                <SelectedTagProvider>
+                    <Router>
+                        <App />
+                    </Router>
+                </SelectedTagProvider>
+                <ReactQueryDevtools initialIsOpen = { false } />
+            </QueryClientProvider>
+        </Provider>
+    </StoreProvider>,
     document.getElementById('root'),
 );

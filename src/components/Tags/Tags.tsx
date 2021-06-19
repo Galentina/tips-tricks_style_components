@@ -1,20 +1,22 @@
 /* Core */
-import { FC, useContext, useEffect } from 'react';
+import { FC, useEffect } from 'react';
+import { observer } from 'mobx-react-lite';
 import { TipViewMode } from '../../types';
 /* Components */
 import { Tag } from './Tag';
 
 /* Other */
-import { TagContext } from '../../lib';
 import { useTags } from '../../hooks';
 import { fetchify } from '../../helpers';
+import { useStore } from '../../hooks/useStore';
 
 type Props = {
     tipViewMode: TipViewMode;
 };
 
-export const Tags: FC<Props> = ({ tipViewMode }) => {
-    const [selectedTagId, setSelectedTagId] = useContext(TagContext);
+export const Tags: FC<Props> = observer(({ tipViewMode }) => {
+    const { tagStore } = useStore();
+    const { selectedTagId, setSelectedTagId } = tagStore;
     const { data: tags, isFetchedAfterMount, isFetched } = useTags();
 
     useEffect(() => {
@@ -36,4 +38,4 @@ export const Tags: FC<Props> = ({ tipViewMode }) => {
     ));
 
     return <div className = 'tags'>{ fetchify(isFetched, tagsJSX) }</div>;
-};
+});

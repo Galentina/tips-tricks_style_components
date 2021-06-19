@@ -1,5 +1,5 @@
 /* Core */
-import { FC, useContext } from 'react';
+import { FC } from 'react';
 import { Link } from 'react-router-dom';
 import { observer } from 'mobx-react-lite';
 
@@ -7,12 +7,13 @@ import { observer } from 'mobx-react-lite';
 import { Tag } from '../../components';
 
 /* Other */
-import { TagContext } from '../../lib';
 import { fetchify, getTagIcon } from '../../helpers';
 import { useTags } from '../../hooks';
+import { useStore } from '../../hooks/useStore';
 
 export const TagsAside: FC = observer(() => {
-    const [, setSelectedTagId] = useContext(TagContext);
+    const { tagStore } = useStore();
+    const { setSelectedTagId } = tagStore;
     const { data: tags, isFetched } = useTags();
 
     const tagsJSX = tags?.map((tag) => {
