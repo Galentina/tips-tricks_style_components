@@ -1,22 +1,23 @@
-// @ts-nocheck
 /* Core */
-import { useContext } from 'react';
-import { useSelector } from 'react-redux';
+import { SyntheticEvent } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link, NavLink } from 'react-router-dom';
 
 /* Other */
 import { icons } from '../theme/icons/nav';
-import { Context } from '../lib';
 import { getToken } from '../lib/redux/selectors';
+import { getIsSettingsOpen } from '../lib/redux/selectors/settings';
+import { settingsActions } from '../lib/redux/actions/settings';
 
 export const Nav = () => {
     const token = useSelector(getToken);
-    const [isSettingsOpen, setSettingsOpen] = useContext(Context);
+    const isSettingsOpen = useSelector(getIsSettingsOpen);
+    const dispatch = useDispatch();
 
-    const handleSettingsClick = (event) => {
+    const handleSettingsClick = (event: SyntheticEvent<HTMLAnchorElement>) => {
         event.preventDefault();
 
-        setSettingsOpen(true);
+        dispatch(settingsActions.toggleSettingsIsOpen(true));
     };
 
     return (

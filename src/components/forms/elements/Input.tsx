@@ -1,10 +1,14 @@
-export const Input = (props) => {
+/* Core */
+import { FC } from 'react';
+import { UseFormRegisterReturn } from 'react-hook-form';
+
+export const Input: FC<IPropTypes> = (props) => {
     let input = <input
         placeholder = { props.placeholder } type = { props.type }
         { ...props.register } />;
 
     if (props.tag === 'textarea') {
-        input = <textarea placeholder = { props.placeholder } { ...props.register }></textarea>;
+        input = <textarea placeholder = { props.placeholder } { ...props.register } />;
     }
 
     if (props.tag === 'select') {
@@ -33,3 +37,15 @@ Input.defaultProps = {
     type: 'text',
     tag:  'input',
 };
+
+interface IPropTypes {
+    placeholder?: string;
+    type?: string;
+    tag?: string;
+    label: string;
+    register: UseFormRegisterReturn;
+    error?: {
+        message?: string;
+    };
+    options?: { value: string; name: string }[];
+}

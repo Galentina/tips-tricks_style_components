@@ -1,7 +1,7 @@
-// Core
+/* Core */
 import { createStore, applyMiddleware } from 'redux';
 
-// Instruments
+/* Instruments */
 import { rootReducer } from './rootReducer';
 import {
     composeEnhancers,
@@ -12,3 +12,5 @@ export const store = createStore(
     rootReducer,
     composeEnhancers(applyMiddleware(...middleware)),
 );
+
+export type RootState = ReturnType<typeof store.getState>;

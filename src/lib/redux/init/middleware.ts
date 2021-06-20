@@ -1,12 +1,12 @@
-// Core
-import { compose } from 'redux';
+/* Core */
+import { AnyAction, compose, Middleware } from 'redux';
 import { createLogger } from 'redux-logger';
 
 export const logger = createLogger({
     duration:  true,
     collapsed: true,
     colors:    {
-        title: (action) => {
+        title: (action: AnyAction) => {
             return action.error ? 'firebrick' : 'deepskyblue';
         },
         prevState: () => '#1C5FAF',
@@ -17,11 +17,10 @@ export const logger = createLogger({
 });
 
 const developmentEnvironment = process.env.NODE_ENV === 'development';
-// @ts-ignore
 const devtools = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__;
 const composeEnhancers = developmentEnvironment && devtools ? devtools : compose;
 
-const middleware = [];
+const middleware: Middleware[] = [];
 
 if (developmentEnvironment) {
     middleware.push(logger);

@@ -1,17 +1,11 @@
 /* Core */
-import { FC } from 'react';
+import { FC, ReactElement } from 'react';
 
 /* Other */
 import { getTagIcon } from '../../helpers';
+import { ITagModel } from '../../types';
 
-interface ITagProps {
-    id: string,
-    name: string,
-    dataActive: boolean,
-    handleTagClick: (id: string) => any,
-}
-
-export const Tag: FC<ITagProps> = ({
+export const Tag: FC<IPropTypes> = ({
     id, name, dataActive, handleTagClick,
 }) => {
     const TagIcon = getTagIcon(name);
@@ -24,3 +18,9 @@ export const Tag: FC<ITagProps> = ({
         </span>
     );
 };
+
+interface IPropTypes extends ITagModel {
+    dataActive: boolean;
+    handleTagClick: (value: string) => void;
+    children?: ReactElement;
+}

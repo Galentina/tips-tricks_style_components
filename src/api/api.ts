@@ -1,7 +1,12 @@
+/* Core */
 import axios from 'axios';
+
+/* Other */
 import { ITipModel } from '../types/TipModel';
 import { ITagModel } from '../types/TagModel';
-/* Core */
+import { AuthHeader } from '../types/AuthHeader';
+import { ISignUpFormShape } from '../components/forms/SignUpForm/config';
+import { ILoginFormShape } from '../components/forms/LoginForm/config';
 
 export const api = {
     async getTags() {
@@ -25,8 +30,8 @@ export const api = {
 
         return tipById;
     },
-    async createTip(tip, token) {
-        const config = {} as any;
+    async createTip(tip: ITipModel, token: string) {
+        const config: AuthHeader = {};
 
         if (typeof token === 'string' && token) {
             config.headers = {
@@ -42,7 +47,7 @@ export const api = {
 
         return newTip;
     },
-    async login(credentials) {
+    async login(credentials: ILoginFormShape) {
         const { email, password } = credentials;
         const { data } = await axios.get(
             `${process.env.REACT_APP_API_URL}/auth/login`,
@@ -55,7 +60,7 @@ export const api = {
 
         return data;
     },
-    async signUp(credentials) {
+    async signUp(credentials: ISignUpFormShape) {
         const { confirmPassword, ...body } = credentials;
         const { data } = await axios.post(
             `${process.env.REACT_APP_API_URL}/auth/registration`,

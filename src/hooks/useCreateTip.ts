@@ -1,4 +1,3 @@
-// @ts-nocheck
 /* Core */
 import { useMutation, useQueryClient } from 'react-query';
 import { useSelector } from 'react-redux';
@@ -6,13 +5,14 @@ import { useSelector } from 'react-redux';
 /* Other */
 import { api } from '../api';
 import { getToken } from '../lib/redux/selectors';
+import { ITipModel } from '../types';
 
 export const useCreateTip = () => {
     const token = useSelector(getToken);
     const client = useQueryClient();
 
     const mutation = useMutation(
-        (tip) => {
+        (tip: ITipModel) => {
             return api.createTip(tip, token);
         },
         {

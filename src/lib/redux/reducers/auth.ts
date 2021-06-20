@@ -1,4 +1,7 @@
-// Other
+/* Core */
+import { AnyAction } from 'redux';
+
+/* Other */
 import { types } from '../types';
 
 const initialState = {
@@ -7,7 +10,7 @@ const initialState = {
     error:        false,
 };
 
-export const authReducer = (state = initialState, action) => {
+export const authReducer = (state = initialState, action: AnyAction) => {
     switch (action.type) {
         case types.SET_TOKEN: {
             return {

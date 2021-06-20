@@ -4,23 +4,12 @@ import { Link } from 'react-router-dom';
 
 /* Other */
 import { getTagIcon, formatDate } from '../../helpers';
+import { ITipModel } from '../../types';
 
-interface ITipProps {
-    id: string,
-    tag: {
-        id: string,
-        name: string,
-    }
-    title: string,
-    preview: string,
-    author: string,
-    created: string,
-}
-export const Tip: FC<ITipProps> = (props) => {
+export const Tip: FC<IPropTypes> = (props) => {
     const {
         id, tag, title, preview, author, created,
     } = props;
-
     const TagIcon = getTagIcon(tag.name);
 
     return (
@@ -45,3 +34,5 @@ export const Tip: FC<ITipProps> = (props) => {
         </article>
     );
 };
+
+interface IPropTypes extends ITipModel {}

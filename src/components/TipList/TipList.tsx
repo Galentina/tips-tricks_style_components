@@ -1,22 +1,20 @@
 /* Core */
-import { FC, useContext } from 'react';
-import { TipViewMode } from '../../types';
+import { FC } from 'react';
 
 /* Components */
+import { observer } from 'mobx-react-lite';
 import { Tip } from './Tip';
 
 /* Other */
-import { TagContext } from '../../lib';
 import { useTips } from '../../hooks';
 import { fetchify } from '../../helpers';
+import { TipViewMode } from '../../types';
+import { useStore } from '../../hooks/useStore';
 
-type Props = {
-    tipViewMode: TipViewMode;
-};
-
-export const TipList: FC<Props> = ({ tipViewMode }) => {
+export const TipList: FC<IPropTypes> = observer(({ tipViewMode }) => {
     const query = useTips();
-    const [selectedTagId] = useContext<any>(TagContext);
+    const { tagStore } = useStore();
+    const { selectedTagId } = tagStore;
     let tips = query.data;
 
     if (tipViewMode === 'topic-by-tag') {
@@ -26,4 +24,8 @@ export const TipList: FC<Props> = ({ tipViewMode }) => {
     const tipsJSX = tips?.map((tip) => <Tip key = { tip.id } { ...tip } />);
 
     return <section className = 'tip-list'>{ fetchify(query.isFetched, tipsJSX) }</section>;
-};
+});
+
+interface IPropTypes {
+    tipViewMode: TipViewMode;
+}
