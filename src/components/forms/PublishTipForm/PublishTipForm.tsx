@@ -1,15 +1,16 @@
 /* Core */
-import { useEffect } from 'react';
+import { FC, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 
 /* Other */
-import { Input } from '../elements/Input';
+import { observer } from 'mobx-react-lite';
+import { Input } from '../elements';
 import { getNewTipPlaceholder, schema } from './config';
 import { useCreateTip, useTags } from '../../../hooks';
 import { ITipModel } from '../../../types';
 
-export const PublishTipForm = () => {
+export const PublishTipForm: FC = observer(() => {
     const { data: tags } = useTags();
     const createTip = useCreateTip();
 
@@ -69,4 +70,4 @@ export const PublishTipForm = () => {
             </form>
         </section>
     );
-};
+});

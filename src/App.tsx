@@ -1,12 +1,12 @@
 /* Core */
-import React, { useEffect } from 'react';
+import React, { FC, useEffect } from 'react';
 import {
     Routes, Route, Outlet, Navigate,
 } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
 import { ToastContainer, toast, Slide } from 'react-toastify';
 
 /* Components */
+import { observer } from 'mobx-react-lite';
 import { Settings } from './components';
 import {
     TipByIdPage,
@@ -16,12 +16,11 @@ import {
     LoginPage,
     SignUpPage,
 } from './pages';
-import { getErrorMessage } from './lib/redux/selectors';
-import { authActions } from './lib/redux/actions';
+import { useStore } from './hooks/useStore';
 
-export const App = () => {
-    const dispatch = useDispatch();
-    const errorMessage = useSelector(getErrorMessage);
+export const App: FC = observer(() => {
+    const { authStore } = useStore();
+    const { errorMessage } = authStore;
 
     useEffect(() => {
         if (errorMessage) {
@@ -39,7 +38,7 @@ export const App = () => {
        * необходимо очистить состояние ошибки что бы при повторном возникновении
        * такой же ошибки появилось вспылвающее сообщение
        * */
-            dispatch(authActions.resetError());
+            authStore.resetError();
         }
     }, [errorMessage]);
 
@@ -67,4 +66,4 @@ export const App = () => {
             </Routes>
         </>
     );
-};
+});

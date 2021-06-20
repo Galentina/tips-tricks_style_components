@@ -1,23 +1,20 @@
 /* Core */
-import { SyntheticEvent } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { FC, SyntheticEvent } from 'react';
 import { Link, NavLink } from 'react-router-dom';
 
 /* Other */
+import { observer } from 'mobx-react-lite';
 import { icons } from '../theme/icons/nav';
-import { getToken } from '../lib/redux/selectors';
-import { getIsSettingsOpen } from '../lib/redux/selectors/settings';
-import { settingsActions } from '../lib/redux/actions/settings';
+import { useStore } from '../hooks/useStore';
 
-export const Nav = () => {
-    const token = useSelector(getToken);
-    const isSettingsOpen = useSelector(getIsSettingsOpen);
-    const dispatch = useDispatch();
+export const Nav: FC = observer(() => {
+    const { authStore, settingsStore } = useStore();
+    const { token } = authStore;
+    const { isSettingsOpen } = settingsStore;
 
     const handleSettingsClick = (event: SyntheticEvent<HTMLAnchorElement>) => {
         event.preventDefault();
-
-        dispatch(settingsActions.toggleSettingsIsOpen(true));
+        settingsStore.toggleSettingsIsOpen(true);
     };
 
     return (
@@ -53,4 +50,4 @@ export const Nav = () => {
             ) }
         </nav>
     );
-};
+});

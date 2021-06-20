@@ -1,14 +1,14 @@
 /* Core */
 import { useMutation, useQueryClient } from 'react-query';
-import { useSelector } from 'react-redux';
 
 /* Other */
 import { api } from '../api';
-import { getToken } from '../lib/redux/selectors';
 import { ITipModel } from '../types';
+import { useStore } from './useStore';
 
 export const useCreateTip = () => {
-    const token = useSelector(getToken);
+    const { authStore } = useStore();
+    const token = authStore;
     const client = useQueryClient();
 
     const mutation = useMutation(
