@@ -7,6 +7,7 @@ import { ITagModel } from '../types/TagModel';
 import { AuthHeader } from '../types/AuthHeader';
 import { ISignUpFormShape } from '../components/forms/SignUpForm/config';
 import { ILoginFormShape } from '../components/forms/LoginForm/config';
+import { AuthStore } from '../lib/mobx/authStore';
 
 export const api = {
     async getTags() {
@@ -30,7 +31,7 @@ export const api = {
 
         return tipById;
     },
-    async createTip(tip: ITipModel, token: string) {
+    async createTip(tip: ITipModel, token: AuthStore) {
         const config: AuthHeader = {};
 
         if (typeof token === 'string' && token) {

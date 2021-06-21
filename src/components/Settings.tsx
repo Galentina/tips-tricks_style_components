@@ -1,12 +1,11 @@
 /* Core */
 import { FC } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { getIsSettingsOpen } from '../lib/redux/selectors';
-import { settingsActions } from '../lib/redux/actions/settings';
+import { observer } from 'mobx-react-lite';
+import { useStore } from '../hooks/useStore';
 
-export const Settings: FC = () => {
-    const isSettingsOpen = useSelector(getIsSettingsOpen);
-    const dispatch = useDispatch();
+export const Settings: FC = observer(() => {
+    const { settingsStore } = useStore();
+    const { isSettingsOpen } = settingsStore;
 
     return (
         <section className = { `settings ${isSettingsOpen ? 'open' : 'closed'}` }>
@@ -15,10 +14,10 @@ export const Settings: FC = () => {
             </header>
 
             <footer>
-                <button onClick = { () => dispatch(settingsActions.toggleSettingsIsOpen(false)) }>
+                <button onClick = { () => settingsStore.toggleSettingsIsOpen(false) }>
           Закрыть
                 </button>
             </footer>
         </section>
     );
-};
+});
