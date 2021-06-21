@@ -518,7 +518,9 @@
     "@typescript-eslint/no-unused-expressions": "warn",
     "@typescript-eslint/no-useless-constructor": "warn",
     "@typescript-eslint/prefer-for-of": "warn",
-    "@typescript-eslint/lines-between-class-members": "error",
+    "@typescript-eslint/lines-between-class-members": ["error", {
+      "exceptAfterSingleLine": true
+    }],
     "@typescript-eslint/dot-notation": "error",
     "jsx-quotes": [
       "error",

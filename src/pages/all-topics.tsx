@@ -4,7 +4,7 @@ export const AllTopicsPage = () => {
     return (
         <>
             <Layout>
-                <Hero tipViewMode = 'topic-by-tag' />
+                <Hero tipViewMode = 'all-topics' />
                 <TipList tipViewMode = 'all-topics' />
             </Layout>
         </>

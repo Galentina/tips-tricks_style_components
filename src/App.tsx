@@ -3,8 +3,8 @@ import React, { useEffect } from 'react';
 import {
     Routes, Route, Outlet, Navigate,
 } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
 import { ToastContainer, toast, Slide } from 'react-toastify';
+import { observer } from 'mobx-react-lite';
 
 /* Components */
 import { Settings } from './components';
@@ -16,12 +16,13 @@ import {
     LoginPage,
     SignUpPage,
 } from './pages';
-import { getErrorMessage } from './lib/redux/selectors';
-import { authActions } from './lib/redux/actions';
 
-export const App = () => {
-    const dispatch = useDispatch();
-    const errorMessage = useSelector(getErrorMessage);
+/* Other */
+import { useStore } from './hooks';
+
+export const App = observer(() => {
+    const { authStore } = useStore();
+    const { errorMessage, resetError } = authStore;
 
     useEffect(() => {
         if (errorMessage) {
@@ -36,10 +37,10 @@ export const App = () => {
             });
             notify();
             /**
-       * необходимо очистить состояние ошибки что бы при повторном возникновении
-       * такой же ошибки появилось вспылвающее сообщение
-       * */
-            dispatch(authActions.resetError());
+             * необходимо очистить состояние ошибки что бы при повторном возникновении
+             * такой же ошибки появилось вспылвающее сообщение
+             * */
+            resetError();
         }
     }, [errorMessage]);
 
@@ -67,4 +68,4 @@ export const App = () => {
             </Routes>
         </>
     );
-};
+});

@@ -1,1 +1,1 @@
-export * from './selectedTagContext';
+export * from './storeContext';

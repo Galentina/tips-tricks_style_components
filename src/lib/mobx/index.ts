@@ -1,9 +1,23 @@
 // Storages
+import { AuthStore } from './AuthStore';
+import { SettingsStore } from './settingsStore';
+import { TagStore } from './tagStore';
 
 class RootStore {
+    tagStore: TagStore;
+    settingsStore: SettingsStore;
+    authStore: AuthStore;
+
     constructor() {
-        // this.tagStore = new TagStore();
+        this.tagStore = new TagStore();
+        this.settingsStore = new SettingsStore();
+        this.authStore = new AuthStore();
     }
 }
 
-export const rootStore = new RootStore();
+const rootStore = new RootStore();
+
+export {
+    RootStore,
+    rootStore,
+};

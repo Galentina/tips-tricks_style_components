@@ -1,19 +1,19 @@
 /* Core */
-import { FC, useContext } from 'react';
+import { FC } from 'react';
 import { Link } from 'react-router-dom';
-import { observer } from 'mobx-react-lite';
 
 /* Components */
 import { Tag } from '../../components';
 
 /* Other */
-import { TagContext } from '../../lib';
 import { fetchify, getTagIcon } from '../../helpers';
-import { useTags } from '../../hooks';
+import { useStore, useTags } from '../../hooks';
 
-export const TagsAside: FC = observer(() => {
-    const [, setSelectedTagId] = useContext(TagContext);
+export const TagsAside: FC = () => {
+    const { tagStore } = useStore();
     const { data: tags, isFetched } = useTags();
+
+    const { setSelectedTagId } = tagStore;
 
     const tagsJSX = tags?.map((tag) => {
         const TagIcon = getTagIcon(tag.name);
@@ -38,4 +38,4 @@ export const TagsAside: FC = observer(() => {
             <div>{ fetchify(isFetched, tagsJSX) }</div>
         </aside>
     );
-});
+};

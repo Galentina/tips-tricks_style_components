@@ -12,7 +12,7 @@ export const Tag: FC<IPropTypes> = ({
 
     return (
         <span
-            data-active = { dataActive } onClick = { () => handleTagClick(id) }
+            data-active = { dataActive } onClick = { () => handleTagClick(id, name) }
             className = 'tag'>
             <TagIcon /> { name }
         </span>
@@ -21,6 +21,6 @@ export const Tag: FC<IPropTypes> = ({
 
 interface IPropTypes extends ITagModel {
     dataActive: boolean;
-    handleTagClick: (value: string) => void;
+    handleTagClick: (id: string, name: string) => void;
     children?: ReactElement;
 }

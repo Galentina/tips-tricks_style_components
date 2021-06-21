@@ -1,23 +1,21 @@
 /* Core */
 import { SyntheticEvent } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
 import { Link, NavLink } from 'react-router-dom';
+import { observer } from 'mobx-react-lite';
 
 /* Other */
 import { icons } from '../theme/icons/nav';
-import { getToken } from '../lib/redux/selectors';
-import { getIsSettingsOpen } from '../lib/redux/selectors/settings';
-import { settingsActions } from '../lib/redux/actions/settings';
+import { useStore } from '../hooks';
 
-export const Nav = () => {
-    const token = useSelector(getToken);
-    const isSettingsOpen = useSelector(getIsSettingsOpen);
-    const dispatch = useDispatch();
+export const Nav = observer(() => {
+    const { settingsStore, authStore } = useStore();
+    const { token } = authStore;
+    const { isSettingsOpen, toggleSettingsIsOpen } = settingsStore;
 
     const handleSettingsClick = (event: SyntheticEvent<HTMLAnchorElement>) => {
         event.preventDefault();
 
-        dispatch(settingsActions.toggleSettingsIsOpen(true));
+        toggleSettingsIsOpen(true);
     };
 
     return (
@@ -33,24 +31,24 @@ export const Nav = () => {
             </NavLink>
             <NavLink to = '/publish'>
                 <icons.Publish />
-        Опубликовать
+                Опубликовать
             </NavLink>
             <a className = { isSettingsOpen ? 'active' : '' } onClick = { handleSettingsClick }>
                 <icons.Settings />
-        Настройки
+                Настройки
             </a>
             { !token && (
                 <NavLink to = '/login'>
                     <icons.Bolt />
-          Войти
+                    Войти
                 </NavLink>
             ) }
             { token && (
                 <NavLink to = '/logout'>
                     <icons.Logout />
-          Выйти
+                    Выйти
                 </NavLink>
             ) }
         </nav>
     );
-};
+});

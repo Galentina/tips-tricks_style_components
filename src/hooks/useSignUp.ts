@@ -1,16 +1,16 @@
 /* Core */
 import { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { useMutation } from 'react-query';
 
 /* Other */
-import { authActions } from '../lib/redux/actions';
 import { api } from '../api';
 import { ISignUpFormShape } from '../components/forms/SignUpForm/config';
+import { useStore } from './useStore';
 
 export const useSignUp = () => {
-    const dispatch = useDispatch();
+    const { authStore } = useStore();
+    const { setToken } = authStore;
     const navigate = useNavigate();
     const mutation = useMutation((credentials: ISignUpFormShape) => {
         return api.signUp(credentials);
@@ -20,7 +20,7 @@ export const useSignUp = () => {
         if (mutation.isSuccess) {
             const token = mutation.data?.token;
 
-            dispatch(authActions.setToken(token));
+            setToken(token);
             localStorage.setItem('jwt', token);
             navigate('/all-topics');
         }

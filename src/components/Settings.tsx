@@ -1,12 +1,28 @@
 /* Core */
-import { FC } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { getIsSettingsOpen } from '../lib/redux/selectors';
-import { settingsActions } from '../lib/redux/actions/settings';
+import { FC, useEffect } from 'react';
+import { observer } from 'mobx-react-lite';
 
-export const Settings: FC = () => {
-    const isSettingsOpen = useSelector(getIsSettingsOpen);
-    const dispatch = useDispatch();
+/* Other */
+import { useStore } from '../hooks';
+
+export const Settings: FC = observer(() => {
+    const { settingsStore } = useStore();
+    const { isSettingsOpen, toggleSettingsIsOpen } = settingsStore;
+
+    useEffect(() => {
+        const closeSettingsOnEsc = (event: KeyboardEvent) => {
+            if (event.key === 'Escape') {
+                toggleSettingsIsOpen(false);
+            }
+        };
+
+        window.addEventListener('keydown', closeSettingsOnEsc);
+
+        return () => {
+            window.removeEventListener('keydown', closeSettingsOnEsc);
+        };
+    }, []);
+
 
     return (
         <section className = { `settings ${isSettingsOpen ? 'open' : 'closed'}` }>
@@ -16,10 +32,10 @@ export const Settings: FC = () => {
 
             <footer>
                 <button
-                    onClick = { () => dispatch(settingsActions.toggleSettingsIsOpen(false)) }>
+                    onClick = { () => toggleSettingsIsOpen(false) }>
                     Закрыть
                 </button>
             </footer>
         </section>
     );
-};
+});
