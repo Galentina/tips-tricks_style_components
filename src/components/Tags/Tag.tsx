@@ -12,6 +12,7 @@ export const Tag: FC<IPropTypes> = ({
 
     return (
         <span
+            role = 'listitem'
             data-active = { dataActive } onClick = { () => handleTagClick(id, name) }
             className = 'tag'>
             <TagIcon /> { name }

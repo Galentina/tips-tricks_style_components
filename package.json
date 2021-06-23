@@ -44,6 +44,7 @@
     "devDependencies": {
         "@testing-library/jest-dom": "5.12.0",
         "@testing-library/react": "11.2.6",
+        "@testing-library/react-hooks": "^7.0.0",
         "@testing-library/user-event": "13.1.8",
         "@types/faker": "5.5.4",
         "@types/jest": "26.0.23",
@@ -62,6 +63,7 @@
         "eslint-plugin-node": "11.1.0",
         "eslint-plugin-promise": "5.1.0",
         "eslint-plugin-react": "7.23.2",
+        "nock": "^13.1.0",
         "prettier-eslint": "12.0.0",
         "prettier-eslint-cli": "5.0.1",
         "react-scripts": "4.0.3",
@@ -77,5 +79,18 @@
         "stylelint-use-nesting": "3.0.0",
         "ts-node": "9.1.1",
         "typescript": "4.2.4"
+    },
+    "jest": {
+        "coverageReporters": [
+            "html"
+        ],
+        "coverageThreshold": {
+            "global": {
+                "branches": 80,
+                "functions": 80,
+                "lines": 80,
+                "statements": -10
+            }
+        }
     }
 }
