@@ -1,27 +1,35 @@
+/* Core */
 import { makeAutoObservable } from 'mobx';
 
-export class AuthStore {
-    token: string = '';
-
-    errorMessage: string = '';
-
-    error: boolean = false;
+class AuthStore {
+    private message = '';
+    private authToken = '';
 
     constructor() {
-        makeAutoObservable(this);
-    }
-
-    setToken(state: string) {
-        this.token = state;
-    }
-
-    setError(state: string) {
-        this.errorMessage = state;
-        this.error = true;
+        makeAutoObservable(this, {}, {
+            autoBind: true,
+        });
     }
 
     resetError() {
-        this.errorMessage = '';
-        this.error = false;
+        this.message = '';
+    }
+
+    get errorMessage() {
+        return this.message;
+    }
+
+    setError(newErrorMessage: string) {
+        this.message = newErrorMessage;
+    }
+
+    setToken(newToken: string) {
+        this.authToken = newToken;
+    }
+
+    get token() {
+        return this.authToken;
     }
 }
+
+export { AuthStore };
