@@ -1,20 +1,21 @@
 /* Core */
-import { FC, SyntheticEvent } from 'react';
+import { SyntheticEvent } from 'react';
 import { Link, NavLink } from 'react-router-dom';
+import { observer } from 'mobx-react-lite';
 
 /* Other */
-import { observer } from 'mobx-react-lite';
 import { icons } from '../theme/icons/nav';
-import { useStore } from '../hooks/useStore';
+import { useStore } from '../hooks';
 
-export const Nav: FC = observer(() => {
-    const { authStore, settingsStore } = useStore();
+export const Nav = observer(() => {
+    const { settingsStore, authStore } = useStore();
     const { token } = authStore;
-    const { isSettingsOpen } = settingsStore;
+    const { isSettingsOpen, toggleSettingsIsOpen } = settingsStore;
 
     const handleSettingsClick = (event: SyntheticEvent<HTMLAnchorElement>) => {
         event.preventDefault();
-        settingsStore.toggleSettingsIsOpen(true);
+
+        toggleSettingsIsOpen(true);
     };
 
     return (
@@ -30,22 +31,22 @@ export const Nav: FC = observer(() => {
             </NavLink>
             <NavLink to = '/publish'>
                 <icons.Publish />
-        Опубликовать
+                Опубликовать
             </NavLink>
             <a className = { isSettingsOpen ? 'active' : '' } onClick = { handleSettingsClick }>
                 <icons.Settings />
-        Настройки
+                Настройки
             </a>
             { !token && (
                 <NavLink to = '/login'>
                     <icons.Bolt />
-          Войти
+                    Войти
                 </NavLink>
             ) }
             { token && (
                 <NavLink to = '/logout'>
                     <icons.Logout />
-          Выйти
+                    Выйти
                 </NavLink>
             ) }
         </nav>

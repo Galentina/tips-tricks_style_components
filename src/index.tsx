@@ -9,14 +9,12 @@ import { configure } from 'mobx';
 import { App } from './App';
 
 /* Other */
-import { SelectedTagProvider } from './lib';
 import { queryClient } from './lib/react-query';
+import { StoreProvider } from './lib';
 
 /* Styles */
 import 'react-toastify/dist/ReactToastify.css';
 import './theme/main.scss';
-import { StoreProvider } from './lib/storeContext';
-
 
 configure({
     enforceActions:             'always',
@@ -26,15 +24,13 @@ configure({
 });
 
 render(
-    <QueryClientProvider client = { queryClient }>
-        <StoreProvider>
-            <SelectedTagProvider>
-                <Router>
-                    <App />
-                </Router>
-            </SelectedTagProvider>
+    <StoreProvider>
+        <QueryClientProvider client = { queryClient }>
+            <Router>
+                <App />
+            </Router>
             <ReactQueryDevtools initialIsOpen = { false } />
-        </StoreProvider>
-    </QueryClientProvider>,
+        </QueryClientProvider>
+    </StoreProvider>,
     document.getElementById('root'),
 );

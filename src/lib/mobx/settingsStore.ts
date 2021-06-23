@@ -1,17 +1,18 @@
+/* Core */
 import { makeAutoObservable } from 'mobx';
 
-export class SettingsStore {
-    isSettingsOpen: boolean = false;
+class SettingsStore {
+    isSettingsOpen = false;
 
     constructor() {
-        makeAutoObservable(this);
+        makeAutoObservable(this, {}, {
+            autoBind: true,
+        });
     }
 
     toggleSettingsIsOpen(state: boolean) {
         this.isSettingsOpen = state;
     }
-
-    get getIsSettingsOpen() {
-        return this.isSettingsOpen;
-    }
 }
+
+export { SettingsStore };

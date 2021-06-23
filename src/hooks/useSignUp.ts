@@ -8,9 +8,9 @@ import { api } from '../api';
 import { ISignUpFormShape } from '../components/forms/SignUpForm/config';
 import { useStore } from './useStore';
 
-
 export const useSignUp = () => {
     const { authStore } = useStore();
+    const { setToken } = authStore;
     const navigate = useNavigate();
     const mutation = useMutation((credentials: ISignUpFormShape) => {
         return api.signUp(credentials);
@@ -20,7 +20,7 @@ export const useSignUp = () => {
         if (mutation.isSuccess) {
             const token = mutation.data?.token;
 
-            authStore.setToken(token);
+            setToken(token);
             localStorage.setItem('jwt', token);
             navigate('/all-topics');
         }

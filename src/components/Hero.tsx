@@ -1,14 +1,16 @@
 /* Components */
 import { FC } from 'react';
+
+/* Other */
+import { observer } from 'mobx-react-lite';
 import { TipViewMode } from '../types';
 import { Tags } from './Tags';
+import { useStore } from '../hooks';
 
-type Props = {
-    tipViewMode: TipViewMode;
-};
-
-export const Hero: FC<Props> = ({ tipViewMode }) => {
-    const subTitle = tipViewMode === 'all-topics' ? 'Все темы' : 'По тегу';
+export const Hero: FC<IPropTypes> = observer(({ tipViewMode }) => {
+    const { tagStore } = useStore();
+    const { tagName } = tagStore;
+    const subTitle = tipViewMode === 'all-topics' ? 'Все темы' : tagName;
 
     return (
         <section className = 'hero'>
@@ -19,4 +21,8 @@ export const Hero: FC<Props> = ({ tipViewMode }) => {
             <Tags tipViewMode = { tipViewMode } />
         </section>
     );
-};
+});
+
+interface IPropTypes {
+    tipViewMode: TipViewMode;
+}

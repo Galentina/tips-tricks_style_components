@@ -8,7 +8,7 @@ import { useStore } from './useStore';
 
 export const useCreateTip = () => {
     const { authStore } = useStore();
-    const token = authStore;
+    const { token } = authStore;
     const client = useQueryClient();
 
     const mutation = useMutation(

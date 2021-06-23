@@ -1,16 +1,16 @@
 /* Core */
-import { FC, useEffect } from 'react';
+import { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
+import { observer } from 'mobx-react-lite';
 
 /* Other */
-import { observer } from 'mobx-react-lite';
-import { Input } from '../elements';
+import { Input } from '../elements/Input';
 import { getNewTipPlaceholder, schema } from './config';
 import { useCreateTip, useTags } from '../../../hooks';
 import { ITipModel } from '../../../types';
 
-export const PublishTipForm: FC = observer(() => {
+export const PublishTipForm = observer(() => {
     const { data: tags } = useTags();
     const createTip = useCreateTip();
 

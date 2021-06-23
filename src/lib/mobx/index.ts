@@ -1,20 +1,23 @@
-import { makeAutoObservable } from 'mobx';
+// Storages
+import { AuthStore } from './AuthStore';
 import { SettingsStore } from './settingsStore';
 import { TagStore } from './tagStore';
-import { AuthStore } from './authStore';
-// Storages
 
-export class RootStore {
+class RootStore {
     tagStore: TagStore;
-
+    settingsStore: SettingsStore;
     authStore: AuthStore;
 
-    settingsStore: SettingsStore;
-
     constructor() {
-        makeAutoObservable(this);
         this.tagStore = new TagStore();
         this.settingsStore = new SettingsStore();
         this.authStore = new AuthStore();
     }
 }
+
+const rootStore = new RootStore();
+
+export {
+    RootStore,
+    rootStore,
+};

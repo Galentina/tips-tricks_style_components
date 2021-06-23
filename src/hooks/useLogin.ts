@@ -9,9 +9,9 @@ import { api } from '../api';
 import { ILoginFormShape } from '../components/forms/LoginForm/config';
 import { useStore } from './useStore';
 
-
 export const useLogin = () => {
     const { authStore } = useStore();
+    const { setError, setToken } = authStore;
     const navigate = useNavigate();
     const mutation = useMutation((credentials: ILoginFormShape) => {
         return api.login(credentials);
@@ -21,16 +21,16 @@ export const useLogin = () => {
             const { response } = error;
 
             if (response?.status === 401) {
-                authStore.setError('Неверный логин или пароль. Проверьте корректность введённых данных.');
+                setError('Неверный логин или пароль. Проверьте корректность введённых данных.');
             } else {
-                authStore.setError('Ошибка запроса. Повторите через несколько минут или обратитесь к администратору.');
+                setError('Ошибка запроса. Повторите через несколько минут или обратитесь к администратору.');
             }
         },
     });
 
     useEffect(() => {
         if (mutation.isSuccess) {
-            authStore.setToken(mutation.data?.data);
+            setToken(mutation.data?.data);
             localStorage.setItem('jwt', mutation.data?.data);
             navigate('/all-topics');
         }

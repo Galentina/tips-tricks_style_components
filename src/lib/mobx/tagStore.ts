@@ -1,18 +1,31 @@
 /* Core */
 import { makeAutoObservable } from 'mobx';
 
-export class TagStore {
-    selectedTagId: null | string = null;
+class TagStore {
+    private id = '';
+    private name = '';
 
     constructor() {
-        makeAutoObservable(this);
+        makeAutoObservable(this, {}, {
+            autoBind: true,
+        });
     }
 
-    setSelectedTagId(nextTag: string) {
-        this.selectedTagId = nextTag;
+    setSelectedTagId(id: string) {
+        this.id = id;
     }
 
-    get getSelectedTagId() {
-        return this.selectedTagId;
+    setSelectedTagName(name: string) {
+        this.name = name;
+    }
+
+    get selectedTagId() {
+        return this.id;
+    }
+
+    get tagName() {
+        return this.name;
     }
 }
+
+export { TagStore };

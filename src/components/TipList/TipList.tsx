@@ -1,21 +1,21 @@
 /* Core */
 import { FC } from 'react';
+import { observer } from 'mobx-react-lite';
 
 /* Components */
-import { observer } from 'mobx-react-lite';
 import { Tip } from './Tip';
 
 /* Other */
-import { useTips } from '../../hooks';
+import { useStore, useTips } from '../../hooks';
 import { fetchify } from '../../helpers';
 import { TipViewMode } from '../../types';
-import { useStore } from '../../hooks/useStore';
 
 export const TipList: FC<IPropTypes> = observer(({ tipViewMode }) => {
-    const query = useTips();
     const { tagStore } = useStore();
-    const { selectedTagId } = tagStore;
+    const query = useTips();
+
     let tips = query.data;
+    const { selectedTagId } = tagStore;
 
     if (tipViewMode === 'topic-by-tag') {
         tips = tips?.filter((tip) => tip.tag.id === selectedTagId);
