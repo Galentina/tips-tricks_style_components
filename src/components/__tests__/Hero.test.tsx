@@ -39,6 +39,7 @@ describe('Hero:', () => {
         const heading = screen.getByRole('heading', { level: 1, name: /Типсы и Триксы/i });
 
         expect(heading).toBeInTheDocument();
+        expect(heading).toMatchSnapshot();
     });
 
     it('should render tags', async () => {
@@ -47,5 +48,6 @@ describe('Hero:', () => {
         const tags = await screen.findAllByRole('listitem');
 
         expect(tags).toHaveLength(1);
+        expect(tags).toMatchSnapshot();
     });
 });

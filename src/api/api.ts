@@ -2,12 +2,11 @@
 import axios from 'axios';
 
 /* Other */
-import { ITipModel } from '../types/TipModel';
-import { ITagModel } from '../types/TagModel';
+import { ITipModel, ITagModel } from '../types';
 import { AuthHeader } from '../types/AuthHeader';
 import { ISignUpFormShape } from '../components/forms/SignUpForm/config';
 import { ILoginFormShape } from '../components/forms/LoginForm/config';
-import { AuthStore } from '../lib/mobx/authStore';
+import { AuthStore } from '../lib/mobx/AuthStore';
 
 export const api = {
     async getTags() {
