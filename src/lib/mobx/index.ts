@@ -1,4 +1,5 @@
 // Storages
+// @ts-ignore
 import { AuthStore } from './AuthStore';
 import { SettingsStore } from './settingsStore';
 import { TagStore } from './tagStore';

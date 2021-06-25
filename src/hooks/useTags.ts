@@ -2,7 +2,7 @@
 import { useQuery } from 'react-query';
 
 /* Other */
-import { api } from '../api/api';
+import { api } from '../api';
 import { ITagModel } from '../types';
 
 export const useTags = () => {
