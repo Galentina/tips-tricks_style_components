@@ -6,21 +6,24 @@ import nock from 'nock';
 import { QueryClient, QueryClientProvider } from 'react-query';
 
 // Other
-import { useTags } from '../useTags';
+import { useTipById } from '../useTipById';
 
-const fakeData = [
-    {
-        id:   'f38bc0ad-5a09-40ad-b72d-96d04310bd36',
-        name: 'React',
-    },
-];
+const fakeData = {
+    author:  'Лектрум',
+    body:    'Unde quis voluptatem laboriosam et.',
+    created: '2021-03-27T16:38:40.011Z',
+    id:      'fd765bc7-4365-4ffb-aa02-e4cf5c148f4c',
+    preview: 'Не var а const и let',
+    tag:     { id: '5184d0d1-5e4d-4437-9967-8085807fc995', name: 'JavaScript' },
+    title:   'Пользуйся правильными переменными',
+};
 
 nock('https://lab.lectrum.io/rtx/api/tips-and-tricks')
-    .get('/tags')
+    .get(`/tips/${fakeData.id}`)
     .once()
     .reply(200, fakeData, { 'Access-Control-Allow-Origin': '*' });
 
-describe('useTags hook', () => {
+describe('useTipById hook', () => {
     let wrapper = null;
 
     beforeAll(() => {
@@ -33,8 +36,8 @@ describe('useTags hook', () => {
         );
     });
 
-    it('should return array with tags', async () => {
-        const { result, waitFor } = renderHook(() => useTags(), { wrapper });
+    it('should return object with one tip', async () => {
+        const { result, waitFor } = renderHook(() => useTipById(fakeData.id), { wrapper });
 
         await waitFor(() => {
             return result.current.isSuccess;
@@ -43,13 +46,13 @@ describe('useTags hook', () => {
         expect(result.current.data).toEqual(fakeData);
     });
 
-    it('returned tags should be array', async () => {
-        const { result, waitFor } = renderHook(() => useTags(), { wrapper });
+    it('returned tip should be object', async () => {
+        const { result, waitFor } = renderHook(() => useTipById(fakeData.id), { wrapper });
 
         await waitFor(() => {
             return result.current.isSuccess;
         });
 
-        expect(Array.isArray(result.current.data)).toBeTruthy();
+        expect(Array.isArray(result.current.data)).toBeFalsy();
     });
 });

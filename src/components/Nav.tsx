@@ -33,7 +33,9 @@ export const Nav = observer(() => {
                 <icons.Publish />
                 Опубликовать
             </NavLink>
-            <a className = { isSettingsOpen ? 'active' : '' } onClick = { handleSettingsClick }>
+            <a
+                className = { isSettingsOpen ? 'active' : '' } onClick = { handleSettingsClick }
+                role = 'link'>
                 <icons.Settings />
                 Настройки
             </a>

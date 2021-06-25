@@ -48,4 +48,10 @@ describe('Hero:', () => {
 
         expect(tags).toHaveLength(1);
     });
+
+    it('should match snapshot', () => {
+        const { container } = init();
+
+        expect(container).toMatchSnapshot();
+    });
 });

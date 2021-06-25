@@ -5,7 +5,7 @@
     "scripts": {
         "dev": "react-scripts start",
         "build": "react-scripts build",
-        "test": "react-scripts test",
+        "test": "react-scripts test --watchAll --verbose",
         "eject": "react-scripts eject",
         "start": "npm run build && serve -s build",
         "format": "prettier-eslint --list-different $PWD/'src/**/*.tsx'; prettier-eslint --write $PWD/'src/**/*.tsx'",
@@ -79,18 +79,5 @@
         "stylelint-use-nesting": "3.0.0",
         "ts-node": "9.1.1",
         "typescript": "4.2.4"
-    },
-    "jest": {
-        "coverageReporters": [
-            "html"
-        ],
-        "coverageThreshold": {
-            "global": {
-                "branches": 80,
-                "functions": 80,
-                "lines": 80,
-                "statements": -10
-            }
-        }
     }
 }

@@ -4,8 +4,7 @@ import { FC, createContext, ReactElement } from 'react';
 /* Other */
 import { RootStore } from './mobx';
 
-const rootStore = new RootStore();
-
+export const rootStore = new RootStore();
 export const Context = createContext<RootStore>(rootStore);
 export const StoreProvider: FC<IStoreProviderPropTypes> = (props) => {
     return (

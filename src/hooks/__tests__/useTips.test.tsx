@@ -6,21 +6,26 @@ import nock from 'nock';
 import { QueryClient, QueryClientProvider } from 'react-query';
 
 // Other
-import { useTags } from '../useTags';
+import { useTips } from '../useTips';
 
 const fakeData = [
     {
-        id:   'f38bc0ad-5a09-40ad-b72d-96d04310bd36',
-        name: 'React',
+        author:  'Лектрум',
+        body:    'Unde quis voluptatem laboriosam et.',
+        created: '2021-03-27T16:38:40.011Z',
+        id:      'fd765bc7-4365-4ffb-aa02-e4cf5c148f4c',
+        preview: 'Не var а const и let',
+        tag:     { id: '5184d0d1-5e4d-4437-9967-8085807fc995', name: 'JavaScript' },
+        title:   'Пользуйся правильными переменными',
     },
 ];
 
 nock('https://lab.lectrum.io/rtx/api/tips-and-tricks')
-    .get('/tags')
+    .get('/tips')
     .once()
     .reply(200, fakeData, { 'Access-Control-Allow-Origin': '*' });
 
-describe('useTags hook', () => {
+describe('useTips hook', () => {
     let wrapper = null;
 
     beforeAll(() => {
@@ -33,8 +38,8 @@ describe('useTags hook', () => {
         );
     });
 
-    it('should return array with tags', async () => {
-        const { result, waitFor } = renderHook(() => useTags(), { wrapper });
+    it('should return array with tips', async () => {
+        const { result, waitFor } = renderHook(() => useTips(), { wrapper });
 
         await waitFor(() => {
             return result.current.isSuccess;
@@ -43,8 +48,8 @@ describe('useTags hook', () => {
         expect(result.current.data).toEqual(fakeData);
     });
 
-    it('returned tags should be array', async () => {
-        const { result, waitFor } = renderHook(() => useTags(), { wrapper });
+    it('returned tips should be array', async () => {
+        const { result, waitFor } = renderHook(() => useTips(), { wrapper });
 
         await waitFor(() => {
             return result.current.isSuccess;
