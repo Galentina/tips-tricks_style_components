@@ -46,6 +46,6 @@ interface IPropTypes {
     register: UseFormRegisterReturn;
     error?: {
         message?: string;
-    }
-    options?: { value: string; name: string }[]
+    };
+    options?: { value: string; name: string }[];
 }

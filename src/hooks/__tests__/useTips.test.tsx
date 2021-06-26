@@ -32,9 +32,7 @@ describe('useTips hook', () => {
         const queryClient = new QueryClient();
         // eslint-disable-next-line react/display-name
         wrapper = ({ children }) => (
-            <QueryClientProvider client = { queryClient }>
-                { children }
-            </QueryClientProvider>
+            <QueryClientProvider client = { queryClient }>{ children }</QueryClientProvider>
         );
     });
 
