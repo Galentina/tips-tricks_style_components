@@ -30,6 +30,7 @@ export const NavWrapper = styled.nav`
             springgreen
         );
         background-clip: text;
+        -webkit-background-clip: text;
         background-size: 200% 200%;
         transition: color 0.2s ease-in-out;
         animation: rainbow 2s ease-in-out infinite;
