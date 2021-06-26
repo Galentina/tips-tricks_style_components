@@ -1,36 +1,94 @@
+// @ts-nocheck
 /* eslint-disable node/no-unpublished-import */
-import { render } from '@testing-library/react';
-import { QueryClient, QueryClientProvider } from 'react-query';
+import { render, screen } from '@testing-library/react';
 import { BrowserRouter as Router } from 'react-router-dom';
+
 import { Nav } from '../Nav';
+import { StoreProvider, rootStore } from '../../lib';
 
-
-const queryClient = new QueryClient();
 const init = () => {
     const { container } = render(
-        <QueryClientProvider client = { queryClient }>
-            <Router >
+        <StoreProvider>
+            <Router>
                 <Nav />
             </Router>
-        </QueryClientProvider>,
+        </StoreProvider>,
     );
 
     return { container };
 };
 
+describe('Nav:', () => {
+    it('should have header element', () => {
+        init();
 
-describe('Tests for Nav component', () => {
-    test('should have a element', () => {
-        const { container } = init();
-        // @ts-ignore
-        const aElements = container.querySelectorAll('a');
-        expect(aElements).toHaveLength(6);
+        const heading = screen.getByRole('heading', { level: 1, name: /Типсы и Триксы/i });
+
+        expect(heading).toBeInTheDocument();
     });
-    test('first a element should have certain value', () => {
-        const { container } = init();
-        // @ts-ignore
-        const aElements = container.querySelectorAll('a');
-        const aHref = aElements[ 0 ].href;
-        expect(aHref).toBe('http://localhost/all-topics');
+
+    it('should have 6 links', async () => {
+        await init();
+
+        const links = await screen.findAllByRole('link');
+
+        expect(links).toHaveLength(6);
+    });
+
+    it('1 link should have path `/all-topics` in href', async () => {
+        await init();
+
+        const links = await screen.findAllByRole('link');
+
+        expect(links[ 0 ].getAttribute('href')).toBe('/all-topics');
+    });
+
+    it('2 link should have path `/all-topics` in href', async () => {
+        await init();
+
+        const links = await screen.findAllByRole('link');
+
+        expect(links[ 1 ].getAttribute('href')).toBe('/all-topics');
+    });
+
+    it('3 link should have path `/topics-by-tag` in href', async () => {
+        await init();
+
+        const links = await screen.findAllByRole('link');
+
+        expect(links[ 2 ].getAttribute('href')).toBe('/topics-by-tag');
+    });
+
+    it('4 link should have path `/publish` in href', async () => {
+        await init();
+
+        const links = await screen.findAllByRole('link');
+
+        expect(links[ 3 ].getAttribute('href')).toBe('/publish');
+    });
+
+    it('5 link should have an href attribute', async () => {
+        await init();
+
+        const links = await screen.findAllByRole('link');
+
+        expect(links[ 4 ].getAttribute('href')).toBeNull();
+    });
+
+    it('6 link should have path `/login` in href', async () => {
+        await init();
+
+        const links = await screen.findAllByRole('link');
+
+        expect(links[ 5 ].getAttribute('href')).toBe('/login');
+    });
+
+    it('6 link should have path `/logout` in href if token exists in store', async () => {
+        rootStore.authStore.setToken('some-token-string');
+        await init();
+
+        const links = await screen.findAllByRole('link');
+
+        expect(links[ 5 ].getAttribute('href')).toBe('/logout');
     });
 });

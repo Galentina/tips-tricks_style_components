@@ -25,10 +25,9 @@ describe('useTags hook', () => {
 
     beforeAll(() => {
         const queryClient = new QueryClient();
+        // eslint-disable-next-line react/display-name
         wrapper = ({ children }) => (
-            <QueryClientProvider client = { queryClient }>
-                { children }
-            </QueryClientProvider>
+            <QueryClientProvider client = { queryClient }>{ children }</QueryClientProvider>
         );
     });
 
@@ -40,5 +39,15 @@ describe('useTags hook', () => {
         });
 
         expect(result.current.data).toEqual(fakeData);
+    });
+
+    it('returned tags should be array', async () => {
+        const { result, waitFor } = renderHook(() => useTags(), { wrapper });
+
+        await waitFor(() => {
+            return result.current.isSuccess;
+        });
+
+        expect(Array.isArray(result.current.data)).toBeTruthy();
     });
 });

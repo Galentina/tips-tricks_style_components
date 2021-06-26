@@ -23,7 +23,6 @@ export const Settings: FC = observer(() => {
         };
     }, []);
 
-
     return (
         <section className = { `settings ${isSettingsOpen ? 'open' : 'closed'}` }>
             <header>
@@ -31,10 +30,7 @@ export const Settings: FC = observer(() => {
             </header>
 
             <footer>
-                <button
-                    onClick = { () => toggleSettingsIsOpen(false) }>
-                    Закрыть
-                </button>
+                <button onClick = { () => toggleSettingsIsOpen(false) }>Закрыть</button>
             </footer>
         </section>
     );

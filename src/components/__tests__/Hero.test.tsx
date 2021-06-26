@@ -50,4 +50,10 @@ describe('Hero:', () => {
         expect(tags).toHaveLength(1);
         expect(tags).toMatchSnapshot();
     });
+
+    it('should match snapshot', () => {
+        const { container } = init();
+
+        expect(container).toMatchSnapshot();
+    });
 });

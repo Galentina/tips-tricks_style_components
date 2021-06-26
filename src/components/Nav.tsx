@@ -6,6 +6,7 @@ import { observer } from 'mobx-react-lite';
 /* Other */
 import { icons } from '../theme/icons/nav';
 import { useStore } from '../hooks';
+import { NavWrapper } from './styles/Nav.styles';
 
 export const Nav = observer(() => {
     const { settingsStore, authStore } = useStore();
@@ -19,7 +20,7 @@ export const Nav = observer(() => {
     };
 
     return (
-        <nav className = 'nav'>
+        <NavWrapper>
             <Link to = '/all-topics'>
                 <h1 title = 'Типсы и Триксы'>T и T</h1>
             </Link>
@@ -31,24 +32,26 @@ export const Nav = observer(() => {
             </NavLink>
             <NavLink to = '/publish'>
                 <icons.Publish />
-                Опубликовать
+        Опубликовать
             </NavLink>
-            <a className = { isSettingsOpen ? 'active' : '' } onClick = { handleSettingsClick }>
+            <a
+                className = { isSettingsOpen ? 'active' : '' } onClick = { handleSettingsClick }
+                role = 'link'>
                 <icons.Settings />
-                Настройки
+        Настройки
             </a>
             { !token && (
                 <NavLink to = '/login'>
                     <icons.Bolt />
-                    Войти
+          Войти
                 </NavLink>
             ) }
             { token && (
                 <NavLink to = '/logout'>
                     <icons.Logout />
-                    Выйти
+          Выйти
                 </NavLink>
             ) }
-        </nav>
+        </NavWrapper>
     );
 });
