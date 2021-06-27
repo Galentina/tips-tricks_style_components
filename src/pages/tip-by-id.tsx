@@ -3,7 +3,7 @@ import { FC } from 'react';
 
 /* Components */
 import { Layout } from '../components';
-import { RecentTipsAside, TipView, TagsAside } from '../features/tip-by-id';
+import { RecentTipsAside, TipView, TagsAside } from '../features';
 
 export const TipByIdPage: FC = () => {
     return (

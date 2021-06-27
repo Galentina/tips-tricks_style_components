@@ -9,6 +9,7 @@ import { Tip } from './Tip';
 import { useStore, useTips } from '../../hooks';
 import { fetchify } from '../../helpers';
 import { TipViewMode } from '../../types';
+import { TipListWrapper } from '../styles/TipList.styles';
 
 export const TipList: FC<IPropTypes> = observer(({ tipViewMode }) => {
     const { tagStore } = useStore();
@@ -23,7 +24,7 @@ export const TipList: FC<IPropTypes> = observer(({ tipViewMode }) => {
 
     const tipsJSX = tips?.map((tip) => <Tip key = { tip.id } { ...tip } />);
 
-    return <section className = 'tip-list'>{ fetchify(query.isFetched, tipsJSX) }</section>;
+    return <TipListWrapper>{ fetchify(query.isFetched, tipsJSX) }</TipListWrapper>;
 });
 
 interface IPropTypes {

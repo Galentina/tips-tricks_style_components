@@ -10,6 +10,7 @@ import { Tag } from './Tag';
 /* Other */
 import { useStore, useTags } from '../../hooks';
 import { fetchify } from '../../helpers';
+import { TagsWrapper } from '../styles/Tags.styles';
 
 export const Tags: FC<IPropTypes> = observer(({ tipViewMode }) => {
     const { tagStore } = useStore();
@@ -29,16 +30,21 @@ export const Tags: FC<IPropTypes> = observer(({ tipViewMode }) => {
         setSelectedTagName(name);
     };
 
+
+    // @ts-ignore
     const tagsJSX = tags?.map((tag) => (
         <Link key = { tag.id } to = { '/topics-by-tag' }>
             <Tag
                 { ...tag }
                 dataActive = { tipViewMode === 'all-topics' || selectedTagId === tag.id }
-                handleTagClick = { handleTagClick } />
+                handleTagClick = { handleTagClick }
+                mode = { tipViewMode === 'all-topics' || 'topic-by-tag' } />
         </Link>
     ));
 
-    return <div className = 'tags'>{ fetchify(isFetched, tagsJSX) }</div>;
+    // @ts-ignore
+    // eslint-disable-next-line max-len
+    return <TagsWrapper>{ fetchify(isFetched, tagsJSX) }</TagsWrapper>;
 });
 
 interface IPropTypes {
